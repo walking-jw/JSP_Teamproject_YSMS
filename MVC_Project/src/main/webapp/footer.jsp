@@ -15,6 +15,10 @@
 	/* footer 배경색 적용 CSS */
 	.container { 
 		background-color: #ACE2F9;
+<<<<<<< Updated upstream
+=======
+/* 		margin-top : 150px; */
+>>>>>>> Stashed changes
 	}
 	
 	/* footer 로고 이미지 CSS */

@@ -39,7 +39,7 @@
 			<td colspan="2"><textarea rows="5" cols="50" name="qnaContent"></textarea></td>
 		</tr>
 		<tr>
-			<td clospan="2" align="right">
+			<td colspan="2" align="right">
 			<input type="reset" value="지우기">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<input type="button" value="등록" onclick="checkQnaContent();"></td>
 		</tr>				

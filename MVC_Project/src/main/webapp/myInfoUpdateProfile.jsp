@@ -23,13 +23,13 @@
 	.td_myinfo{
 		height:70px;
 		padding:10px;
-		font-size: 30px;
+		font-size: 25px;
 		font-weight: 700;
 	}
 	.td_title{
 		width: 170px;
 		padding:10px;
-		font-size: 20px;
+		font-size: 17px;
 		font-weight: 700;
 	}
 	.td_content{
@@ -40,21 +40,22 @@
 		padding:10px;
 		font-size: 20px;
 	}
+	
 	input[type="text"],
 	input[type="password"]{
-		height: 25px;
-		padding: 5px;
+		height: 23px;
+		padding: 7px;
 		
 		font-size:18px;
 		background-color: #fff;
 		
-		border: 1px soild #f0f0f0;
-/* 		border-radius: 7px; */
+		border: 1px solid #dcdcdc;		
+
 	}
 	button{
 		margin: 0;
 		padding: 10px;
-		font-size: 15px;
+		font-size: 13px;
 		
 		text-align: center;
 		text-decoration: none;
@@ -64,7 +65,7 @@
 		border-radius: 10px;
 		
 		display: inline-block;
-		width: 130px;
+		width: 100px;
 	}
 	input[type="button"]{
 		margin: 0;
@@ -82,23 +83,25 @@
 		
 		display: inline-block;
 		width: 130px;
+		height: 50px;
 	}
 	input[type="button"]:hover{
 		padding: 12px;
 		color: #ace2f9;
 		background-color: #fff;
 		border: 1px solid #ace2f9;
+		height: 50px;
 	}
-
-	
-	
 </style>
 </head>
+<<<<<<< Updated upstream
 <%
 String token = (String)request.getAttribute("updateTty");
 String updateResult = (String)request.getAttribute("updateResult");
 
 %>
+=======
+>>>>>>> Stashed changes
 <script type="text/javascript">
 	updateTry = "<%=token%>";
 	if(updateTry != null){
@@ -187,7 +190,7 @@ String updateResult = (String)request.getAttribute("updateResult");
 		<table align="center">
 			<tr>
 				<td colspan="3" align="left" valign="top" class="td_myinfo"><div style="margin-bottom:10px;">내 정보 수정</div>
-				<div class="underline" style="width:150px"></div>
+				<div class="underline" style="width:130px"></div>
 				</td>
 			</tr>
 			<tr>
