@@ -207,10 +207,9 @@
 				</td>
 			</tr>
 			<tr>
-				<td valign="top" align="left" class="td_title">사진 등록</td>
+				<td valign="top" align="left" class="td_title">사진 등록</td>	
 				<td align="left" class="td_content" width="300px">
-				<div class="user">
-				<img class="userProfile" src="${DTO.filePath }"/></div></td>
+				<div class="user"><img class="userProfile" src="userPhoto/${DTO.filePath }"/></div></td>
 				<td align="left" valign="bottom">
 				<input type="file" name="uploadPhoto" class="file-input" >
 				</td>
