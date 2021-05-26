@@ -21,7 +21,7 @@
 			</tr>
 			<tr>
 				<th>제목</th>
-				<td><input type="text" name="title" size="20" readonly="readonly" value="${announceContent_view.title}"></td>
+				<td><input type="text" name="title" size="80" readonly="readonly" value="${announceContent_view.title}"></td>
 			</tr>
 			<tr>
 				<th>내용</th>

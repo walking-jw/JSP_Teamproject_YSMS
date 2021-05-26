@@ -23,7 +23,7 @@
 			</tr>
 			<tr>
 				<th>제목</th>
-				<td align="left"><input type="text" name="title" size="30" value="${announceContent_view.title}"></td>
+				<td align="left"><input type="text" name="title" size="80" value="${announceContent_view.title}"></td>
 			</tr>
 			<tr>
 				<th>내용</th>
