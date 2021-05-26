@@ -41,7 +41,6 @@
 		width:200px;
 		margin: 0;
 		padding: 5px;
-		
 	}
 	.td_title{
 		width:170px;
@@ -58,49 +57,33 @@
 		height:5px;
 		margin-bottom:30px;
 	}
-	
-	
-	
 </style>
 <title>${DETAIL.title} : 너의 공간 나의 공간 your space my space </title>
 </head>
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.js"> 
-
 	function calcQnaHeight(){
 	 //find the height of the internal page
-	
 	 var the_height=
 	 document.getElementById('qna_iframe').contentWindow.
 	 document.body.scrollHeight;
-	
 	 //change the height of the iframe
 	 document.getElementById('qna_iframe').height=
 	the_height;
-	
 	 //document.getElementById('the_iframe').scrolling = "no";
 	 document.getElementById('qna_iframe').style.overflow = "hidden";
 	}
-	
 	function calcReviewHeight(){
 		 //find the height of the internal page
-		
 		 var the_height=
 		 document.getElementById('review_iframe').contentWindow.
 		 document.body.scrollHeight;
-		
 		 //change the height of the iframe
 		 document.getElementById('review_iframe').height=
 		the_height;
-		
 		 //document.getElementById('the_iframe').scrolling = "no";
 		 document.getElementById('review_iframe').style.overflow = "hidden";
 		}
-
-	
 	//-----------------------
-	
-	
-
 </script>
 <body>
 <%@ include file="header.jsp" %>
@@ -109,7 +92,6 @@
 		<div class="textLeft">
 		<div class="shareIntroduce" style="font-weight:700;">공간 정보</div>
 		<div class="shareUnderline"></div>
-		
 			<div style="margin-bottom:50px; font-weight:700; font-size:40px;">${DETAIL.title}</div>
 			<div class="share"><img class="sharePhoto" src="${DETAIL.filePath }"/></div>
 			<div class="shareIntroduce" style="font-weight:700;">공간 소개</div>
@@ -152,33 +134,25 @@
 		        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
 		        level: 3 // 지도의 확대 레벨
 		    };  
-		
 		// 지도를 생성합니다    
 		var map = new kakao.maps.Map(mapContainer, mapOption); 
-		
 		// 주소-좌표 변환 객체를 생성합니다
 		var geocoder = new kakao.maps.services.Geocoder();
-		
 		// 주소로 좌표를 검색합니다
 		geocoder.addressSearch('${DETAIL.address1}', function(result, status) {
-		
 		    // 정상적으로 검색이 완료됐으면 
 		     if (status === kakao.maps.services.Status.OK) {
-		
 		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-		
 		        // 결과값으로 받은 위치를 마커로 표시합니다
 		        var marker = new kakao.maps.Marker({
 		            map: map,
 		            position: coords
 		        });
-		
 		        // 인포윈도우로 장소에 대한 설명을 표시합니다
 		        var infowindow = new kakao.maps.InfoWindow({
 		            content: '<div style="width:150px;text-align:center;padding:6px 0;">${DETAIL.title}</div>'
 		        });
 		        infowindow.open(map, marker);
-		
 		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
 		        map.setCenter(coords);
 		    } 
@@ -195,8 +169,6 @@
 		<!-- 예약하기 페이지로 이동 -->
 	<form action="reservation.four" method="post">
 	<input type="hidden" name="sNo" value="${sNo}">
-	
-	
 	<script type="text/javascript">
 		/* $(function() {
 			var offset = $("#sidebar").offset();
@@ -213,42 +185,28 @@
 				};
 			});
 		}); */
-		
 		$(document).ready(function() {
-
 			// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
 			var floatPosition = parseInt($("#floatMenu").css('top'));
 			// 250px 이런식으로 가져오므로 여기서 숫자만 가져온다. parseInt( 값 );
-
 			$(window).scroll(function() {
 				// 현재 스크롤 위치를 가져온다.
 				var scrollTop = $(window).scrollTop();
 				var newPosition = scrollTop + floatPosition + "px";
-
 				/* 애니메이션 없이 바로 따라감
 				 $("#floatMenu").css('top', newPosition);
 				 */
-
 				$("#floatMenu").stop().animate({
 					"top" : newPosition
 				}, 200);
-
 			}).scroll();
-
 		});
 		</script>
 	<div id="floatMenu" style="position: absolute; " >	
-		
-	
       <button type="submit" class="button" >예약하기</button>  
   </div>
-		
-		
-	
 	</form>
 	<br><br>
 	<%@ include file="footer.jsp" %>
 </body>
 </html>
-
-
