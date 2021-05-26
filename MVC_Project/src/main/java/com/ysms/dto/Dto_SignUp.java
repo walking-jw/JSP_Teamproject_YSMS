@@ -1,5 +1,6 @@
 package com.ysms.dto;
 
+import java.sql.Timestamp;
 
 public class Dto_SignUp {
 	int no;
@@ -50,8 +51,6 @@ public class Dto_SignUp {
 		this.filePath = filePath;
 		this.signDate = signDate;
 	}
-
-	
 	
 	public int getNo() {
 		return no;
@@ -60,7 +59,6 @@ public class Dto_SignUp {
 	public void setNo(int no) {
 		this.no = no;
 	}
-
 	public String getId() {
 		return id;
 	}
