@@ -115,7 +115,7 @@
 	<c:if test="${!empty loginedUserID }">
 		<c:choose>
 			<c:when test="${loginedUserID eq 'admin' }">
-				<a href="#">회원관리</a>
+				<a href="admin_managingUser.four">회원관리</a>
 				<a href="mypage.four">마이페이지</a>
 				<a href="logout.four">로그아웃</a>
 			</c:when>
