@@ -31,7 +31,8 @@
 				<td>${dto.user_id }</td>
 				<td><a href="content.four?no=${dto.no }">${dto.title }</a></td>
 				<td>${dto.date }</td>
-				<td colspan="4" align="right"><a href="detail.four?no=${dto.no}">자세히보기</a></td>
+				
+						<td colspan="4" align="right"><a href="detail.four?no=${dto.no}">자세히보기</a></td>
 				<td align="center"><button type="button" class="navyBtn" onClick="location.href='host_qna.four?place_no=${dto.place_no}'">질문보기</button></td>
 			</tr>
 		</c:forEach>
@@ -48,7 +49,13 @@
 		<tr>
 			<td  align="right">
 			 <!-- <a href="write_space.four">글작성</a> -->
-			 <a href="write_space.four"><button type="button" class="btnWrite" onClick="write_space.four()">공간 작성</button></a>
+				<c:choose>
+					<c:when test="${!empty loginedUserID }">
+						 <a href="write_space.four"><button type="button" class="btnWrite" onClick="write_space.four()">공간 작성</button></a>
+					</c:when>
+					<c:otherwise>
+					</c:otherwise>	
+				</c:choose>
 			</td>
 		</tr>
 	</table>
