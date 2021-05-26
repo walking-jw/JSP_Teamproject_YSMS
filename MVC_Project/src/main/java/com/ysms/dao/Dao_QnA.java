@@ -61,7 +61,7 @@ public class Dao_QnA {
 			 */
 			System.out.println("  -  Query Start : qnaList * *");
 			
-			String query1 = "SELECT q.content, q.updateDate, q.sender, q.answer, q.a_updateDate, q.a_removeDate, q.place_no, u.filePath, s.title ";
+			String query1 = "SELECT q.content, q.updateDate, q.sender, q.target, q.answer, q.a_updateDate, q.a_removeDate, q.place_no, u.filePath, s.title ";
 			String query2 = "FROM qna_review q, user u, share s ";
 			String query3 = "WHERE q.place_no = ? AND u.id = q.sender AND q.place_no = s.place_no AND q.removeDate is null AND q.score is null ";
 			String query4 = "ORDER BY q.no DESC LIMIT ?, ?";
@@ -92,6 +92,7 @@ public class Dao_QnA {
 				String qnaContent = resultSet.getString("q.content");
 				Timestamp tsQ_updateDate = resultSet.getTimestamp("q.updateDate");
 				String qnaSender = resultSet.getString("q.sender");
+				String qnaTarget = resultSet.getString("q.target");
 				String qnaAnswer = resultSet.getString("q.answer");
 				Timestamp tsA_updateDate = resultSet.getTimestamp("q.a_updateDate");
 				Timestamp tsA_removeDate = resultSet.getTimestamp("q.a_removeDate");
@@ -130,7 +131,7 @@ public class Dao_QnA {
 				}
 				
 				
-				Dto_QnA qnaDto = new Dto_QnA(qnaContent, qnaQ_updateDate, qnaSender, qnaAnswer, qnaA_updateDate, qnaA_removeDate, qnaPlace_no, qnaUserFilePath, qnaPlaceName);
+				Dto_QnA qnaDto = new Dto_QnA(qnaContent, qnaQ_updateDate, qnaSender, qnaAnswer, qnaA_updateDate, qnaA_removeDate, qnaPlace_no, qnaUserFilePath, qnaPlaceName, qnaTarget);
 				dtoQnA.add(qnaDto);
 				
 				System.out.println(qnaUserFilePath);

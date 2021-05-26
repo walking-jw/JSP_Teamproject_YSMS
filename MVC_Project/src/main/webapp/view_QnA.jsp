@@ -74,12 +74,25 @@
 </style>
 </head>
 <script type="text/javascript">
+
 	function writeQna(){
  		var place_no = document.getElementById("place_no").value;
  		  var url = "write_qna.four?place_no=" + place_no;
 		open(url, "confirm",
 				"roolbar=no, location=no,menubar=no,scrollbars=no,resizable=no,width=450,height=230");
  	}
+	function hiddenbtn() {
+	
+	var target = document.getElementById("target").value;
+	var loginedId = document.getElementById("loginedId").value;
+
+	var btn = document.getElementById("write");
+	
+	if(target == loginedId){
+		btn.style.display = "none";
+	}	
+}
+	
 </script>
 <body>
 <div class=mainBox>
@@ -91,8 +104,9 @@
 			<div class="underline" style="margin-top:10px; margin-left:5px;"></div>
 			</th>
 			<th align="right">
-			<button type="button" style="font-weight:800;" onclick="writeQna();">작성하기</button>
-			<input type="hidden" id="place_no" value="${placeNo }">
+				<button id="write" type="button" style="font-weight:800;" onclick="writeQna();">작성하기</button>
+				<input type="hidden" id="loginedId" value="${loginedUserID }">
+				<input type="hidden" id="place_no" value="${placeNo }">
 			</th>
 		</tr>
 		<c:choose>
@@ -103,6 +117,7 @@
  			<div class="user">
 			<img class="userProfile" src="userPhoto/${qnaDto.qnaUserFilePath }">
 			</div>
+			<input type="hidden" id = "target" value="${qnaDto.qnaTarget }">
 			</td>
 		</tr>
 		<tr>
@@ -152,5 +167,8 @@
 	</table>
 	</div>
 </div>
+<script type="text/javascript">
+hiddenbtn();
+</script>
 </body>
 </html>
