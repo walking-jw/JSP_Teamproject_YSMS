@@ -10,6 +10,43 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<%
+	int dayLimit = Integer.parseInt((String)request.getAttribute("dayLimit")); 
+%>
+<script type="text/javascript">
+let shareableDateNum = "<%=dayLimit%>";
+shareableDateNum *= 1;
+
+function checkBoxSet(){
+	checkBoxes = document.getElementsByName("checkBox");
+	temp = shareableDateNum*1
+	for(i = 0; i < checkBoxes.length; i++){
+		if (temp - checkBoxes[i].value*1 >= 0){
+			console.log("checkBoxes["+i+"] : temp" + temp + "-" + checkBoxes[i].value + " = " );
+			temp -= checkBoxes[i].value*1;
+			console.log("계산결과 : "+temp);
+		} else {
+			checkBoxes[i].checked = false;
+		}
+	}
+}
+
+function dateHandler(checkBox){
+	console.log("변경전");
+	console.log(shareableDateNum);
+	if(checkBox.checked){
+		console.log("체크됨");
+		shareableDateNum += (checkBox.value*1 );
+	}else {
+		console.log("체크해제");
+		shareableDateNum -= (checkBox.value*1 );
+	}
+	console.log("변경후");
+	console.log(shareableDateNum);
+	
+	dayLimit.value = shareableDateNum;
+}
+</script>
 <body>
 	<%@ include file="header.jsp" %>
 	<div class="mainBox">
@@ -70,7 +107,18 @@
 			</tr>
 			<tr>
 				<th>예약가능 요일</th>
-				<td><input type="text" name="dayLimit" size="15" value="${DETAIL.dayLimit }"></td>
+				<td>
+				<input type="hidden" name="dayLimit" size="15" value="${DETAIL.dayLimit }">
+					<input type="hidden" id="dayLimit" name="dayLimit" value="" size="50">
+					<input type="checkbox" name = "checkBox" value="1000000" onclick="dateHandler(this)" checked="checked">일
+					<input type="checkbox" name = "checkBox" value="100000" onclick="dateHandler(this)" checked="checked">월
+					<input type="checkbox" name = "checkBox" value="10000" onclick="dateHandler(this)" checked="checked">화
+					<input type="checkbox" name = "checkBox" value="1000" onclick="dateHandler(this)" checked="checked">수
+					<input type="checkbox" name = "checkBox" value="100" onclick="dateHandler(this)" checked="checked">목
+					<input type="checkbox" name = "checkBox" value="10" onclick="dateHandler(this)" checked="checked">금
+					<input type="checkbox" name = "checkBox" value="1" onclick="dateHandler(this)" checked="checked">토
+					<script type="text/javascript">checkBoxSet();</script>
+				</td>
 			</tr>
 		</table>
 			
