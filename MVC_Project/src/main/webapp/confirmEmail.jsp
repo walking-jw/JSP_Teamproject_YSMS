@@ -8,8 +8,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/confirm.css" type="text/css">
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Email 확인</title>
 </head>
 
 <%! String email = ""; %>
@@ -29,6 +32,11 @@
 	
 </script>
 <body>
+
+
+	<div class="mainBox">
+	<div class="contentBox">
+	
 	<c:set var="emailDupleCheckResult" value="${emailDupleCheckResult }" />
 	<c:choose>
 		<c:when test="${emailDupleCheckResult == 'useable' }">
@@ -36,13 +44,14 @@
 			<script type="text/javascript">requestAuthEamil();</script>
 		</c:when>
 		<c:otherwise>
-			<h4>${inputedEmail } : 사용 불가능한 email입니다.</h4>
+			<h4><!-- ${inputedEmail } :  -->사용 불가능한 email입니다.</h4>
 		</c:otherwise>
 	</c:choose>
 	<br><br>
-	<button type="button" onclick="cancel()">취소</button>
+	<button type="button" onclick="cancel()" class="btnCancel">취소</button>
 	
-
+	</div>
+	</div>
 
 </body>
 </html>
