@@ -23,13 +23,13 @@
 	.td_myinfo{
 		height:70px;
 		padding:10px;
-		font-size: 30px;
+		font-size: 25px;
 		font-weight: 700;
 	}
 	.td_title{
 		width: 170px;
 		padding:10px;
-		font-size: 20px;
+		font-size: 17px;
 		font-weight: 700;
 	}
 	.td_content{
@@ -42,29 +42,23 @@
 	}
 	input[type="text"],
 	input[type="password"]{
-		height: 25px;
-		padding: 5px;
-		
+		height: 23px;
+		padding: 7px;
 		font-size:18px;
 		background-color: #fff;
-		
-		border: 1px soild #f0f0f0;
-/* 		border-radius: 7px; */
+		border: 1px solid #dcdcdc;		
 	}
 	button{
 		margin: 0;
 		padding: 10px;
-		font-size: 15px;
-		
+		font-size: 13px;
 		text-align: center;
 		text-decoration: none;
 		background-color: #dcdcdc;
-		
 		border: none;
 		border-radius: 10px;
-		
 		display: inline-block;
-		width: 130px;
+		width: 100px;
 	}
 	input[type="button"]{
 		margin: 0;
@@ -72,33 +66,25 @@
 		font-size: 17px;
 		color: #fff;
 		font-weight:700;
-		
 		text-align: center;
 		text-decoration: none;
 		background-color: #ace2f9;
-		
 		border: none;
 		border-radius: 10px;
-		
 		display: inline-block;
 		width: 130px;
+		height: 50px;
 	}
 	input[type="button"]:hover{
 		padding: 12px;
 		color: #ace2f9;
 		background-color: #fff;
 		border: 1px solid #ace2f9;
+		height: 50px;
 	}
-
-	
-	
 </style>
 </head>
-
-
-
 <script type="text/javascript">
-
 	<c:if test="${!empty updateTty}">
 		<c:if test="${!empty updateResult}">
 			if(updateResult == true){
@@ -108,33 +94,25 @@
 			}
 		</c:if>
 	</c:if>
-
-
 	function validationCheck(){
 		var form = document.signUpForm;
 		var pw1 = form.pw1.value;
 		var pw2 = form.pw2.value;
-		
 		//phoneNo check
  		var phonePattern = /^\d{3}-\d{3,4}-\d{4}$/;
 		var phone = form.phone1.value + "-" + form.phone2.value + "-" + form.phone3.value;
-
 		if (pw1 != "" || pw2 != ""){
 			if (document.signUpForm.hp.value = "false"){
 				alert("비밀번호 일치확인을 해 주세요.");
 				return false;
 			}
-
 		}
-		
 		if(!check(phonePattern, phone, "유효하지 않은 핸드폰 번호입니다.")) {
 			return false;
 		} 
-		
 		alert("회원정보 수정이 성공적으로 완료되었습니다.");
 		form.submit(); 
 	}
-	
 	function check(pattern, taget, message) {
 		if(pattern.test(taget)) {
 	    	return true;
@@ -142,19 +120,14 @@
 	    alert(message);
 	    taget.focus();
 	}
-	
 	function pwEqualCheck(){
 		var form = document.signUpForm;
 		var passwordPattern = /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
 		var pw1 = form.pw1.value;
 		var pw2 = form.pw2.value;
-		
-
-		
 		if(!check(passwordPattern, pw1, "비밀번호는 8~15자리의 영문, 숫자, 특수문자로 조합해야 합니다.")) {
 			return false;
 		}
-		
 		if (pw1 != pw2) {
 			alert("비밀번호가 일치하지 않습니다.");
 			sessionStorage.removeItem("pwEqualCheck");
@@ -162,15 +135,12 @@
 			document.getElementById('inputPwForm2').readOnly = false;
 			return false;
 		}
-		
 		document.getElementById('inputPwForm1').readOnly = true;
 		document.getElementById('inputPwForm2').readOnly = true;
 		form.hp.value = "true";
 		alert("사용가능한 비밀번호입니다.");
 	}
-	
 </script>
-
 <body>
 	<%@ include file="myinfoHeader.jsp" %>
 <div class="mainBox">
@@ -179,7 +149,7 @@
 		<table align="center">
 			<tr>
 				<td colspan="3" align="left" valign="top" class="td_myinfo"><div style="margin-bottom:10px;">내 정보 수정</div>
-				<div class="underline" style="width:150px"></div>
+				<div class="underline" style="width:130px"></div>
 				</td>
 			</tr>
 			<tr>
@@ -246,8 +216,6 @@
 <br>
 <br>
 <br>
-
 	<%@ include file="footer.jsp" %>
-	
 </body>
 </html>
