@@ -18,6 +18,11 @@ public class MyInfoFormCommand implements Command{
 		Dao_MyInfo_UpdateProfile dao = new Dao_MyInfo_UpdateProfile();
 		Dto_SignUp dto = dao.getUserInfo(loginedId);
 		
+		if(dto.getFilePath() == null || dto.getFilePath().equals("")) {
+			System.out.println("@@@@@@@@@@@@@@2사진이 없는뎁");
+		}
+		System.out.println(dto.getFilePath());
+		
 		String[] phone = dto.getPhone().split("-");
 		
 		request.setAttribute("DTO", dto);

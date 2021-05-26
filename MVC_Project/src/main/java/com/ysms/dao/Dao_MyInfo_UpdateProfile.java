@@ -74,22 +74,21 @@ public class Dao_MyInfo_UpdateProfile {
 		return dto;
 	}
 	
-	public String updateUserInfo(String id, String pw, String phone) {
+	public String updateUserInfo(String id, String phone, String filePath) {
 		String result = "false";
-		String query = "UPDATE user SET pw = ?, phone = ? WHERE id = ?";
+		String query = "UPDATE user SET phone = ?, filePath = ? WHERE id = ?";
 
 		Connection conn = null;
 		PreparedStatement psmt = null;
-		ResultSet rs = null;
 
 		try {
 			conn = dataSource.getConnection();
 			psmt = conn.prepareStatement(query);
-			psmt.setString(1, pw);
-			psmt.setString(2, phone);
+			psmt.setString(1, phone);
+			psmt.setString(2, filePath);
 			psmt.setString(3, id);
 			psmt.executeUpdate();
-			System.out.println("updateUserInfo fail");
+			System.out.println("updateUserInfo success");
 			result = "true";
 		} catch (Exception e) {
 			result = "false";
@@ -97,8 +96,6 @@ public class Dao_MyInfo_UpdateProfile {
 			e.printStackTrace();
 		} finally {
 			try {
-				if (rs != null)
-					rs.close();
 				if (psmt != null)
 					psmt.close();
 				if (conn != null)
@@ -109,6 +106,41 @@ public class Dao_MyInfo_UpdateProfile {
 			}
 		}
 
+		return result;
+	}
+	public String updateUserInfo(String id, String pw, String phone, String filePath) {
+		String result = "false";
+		String query = "UPDATE user SET pw = ?, phone = ?, filePath = ? WHERE id = ?";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		
+		try {
+			conn = dataSource.getConnection();
+			psmt = conn.prepareStatement(query);
+			psmt.setString(1, pw);
+			psmt.setString(2, phone);
+			psmt.setString(3, filePath);
+			psmt.setString(4, id);
+			psmt.executeUpdate();
+			System.out.println("updateUserInfo success");
+			result = "true";
+		} catch (Exception e) {
+			result = "false";
+			System.out.println("updateUserInfo fail");
+			e.printStackTrace();
+		} finally {
+			try {
+				if (psmt != null)
+					psmt.close();
+				if (conn != null)
+					conn.close();
+				System.out.println("< rs, psmt, conn close success>");
+			} catch (Exception e) {
+				System.out.println("< rs, psmt, conn close Fail>");
+			}
+		}
+		
 		return result;
 	}
 }
