@@ -58,10 +58,13 @@
 		height:5px;
 		margin-bottom:30px;
 	}
+	
+	
+	
 </style>
 <title>${DETAIL.title} : 너의 공간 나의 공간 your space my space </title>
 </head>
-<script type="text/javascript"> 
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.js"> 
 
 	function calcQnaHeight(){
 	 //find the height of the internal page
@@ -93,6 +96,10 @@
 		 document.getElementById('review_iframe').style.overflow = "hidden";
 		}
 
+	
+	//-----------------------
+	
+	
 
 </script>
 <body>
@@ -188,9 +195,60 @@
 		<!-- 예약하기 페이지로 이동 -->
 	<form action="reservation.four" method="post">
 	<input type="hidden" name="sNo" value="${sNo}">
-	<input type="submit" value="예약하기">
+	
+	
+	<script type="text/javascript">
+		/* $(function() {
+			var offset = $("#sidebar").offset();
+			var topPadding = 300;
+			$(window).scroll(function() {
+				if ($(window).scrollTop() > offset.top) {
+					$("#sidebar").stop().animate({
+						marginTop: $(window).scrollTop() - offset.top + topPadding
+					});
+				} else {
+					$("#sidebar").stop().animate({
+						marginTop: 0
+					});
+				};
+			});
+		}); */
+		
+		$(document).ready(function() {
+
+			// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
+			var floatPosition = parseInt($("#floatMenu").css('top'));
+			// 250px 이런식으로 가져오므로 여기서 숫자만 가져온다. parseInt( 값 );
+
+			$(window).scroll(function() {
+				// 현재 스크롤 위치를 가져온다.
+				var scrollTop = $(window).scrollTop();
+				var newPosition = scrollTop + floatPosition + "px";
+
+				/* 애니메이션 없이 바로 따라감
+				 $("#floatMenu").css('top', newPosition);
+				 */
+
+				$("#floatMenu").stop().animate({
+					"top" : newPosition
+				}, 200);
+
+			}).scroll();
+
+		});
+		</script>
+	<div id="floatMenu" style="position: absolute; " >	
+		
+	
+      <button type="submit" class="button" >예약하기</button>  
+  </div>
+		
+		
+	
 	</form>
 	<br><br>
 	<%@ include file="footer.jsp" %>
 </body>
 </html>
+
+
