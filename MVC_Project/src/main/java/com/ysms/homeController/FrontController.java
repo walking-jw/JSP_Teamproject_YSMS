@@ -43,6 +43,8 @@ import com.ysms.command.LogoutCommand;
 import com.ysms.command.ModifyCommand;
 import com.ysms.command.ModifyQnACommand;
 import com.ysms.command.ModifyReviewCommand;
+import com.ysms.command.MyInfoFormCommand;
+import com.ysms.command.MyInfoUpdateCommand;
 import com.ysms.command.MyinfoQnACommand;
 import com.ysms.command.MyinfoRentalPreviousCommand;
 import com.ysms.command.MyinfoRentalScheduledCommand;
@@ -142,7 +144,21 @@ public class FrontController extends HttpServlet {
 			// Mypage  * * * * * * * * * * * * * *
 				
 			case "/mypage.four":
+				command = new MyInfoFormCommand();
+				command.execute(request, response);
 				viewPage = "myPage.jsp";
+				break;
+				
+			case "/myInfoUpdateForm.four":
+				command = new MyInfoFormCommand();
+				command.execute(request, response);
+				viewPage = "myInfoUpdateProfile.jsp";
+				break;
+			
+			case "/myInfoUpdate.four":
+				command = new MyInfoUpdateCommand();
+				command.execute(request, response);
+				viewPage = "myInfoUpdateForm.four";
 				break;
 				
 			/*
