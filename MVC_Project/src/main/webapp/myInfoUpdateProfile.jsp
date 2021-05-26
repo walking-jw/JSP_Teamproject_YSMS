@@ -94,52 +94,41 @@
 	
 </style>
 </head>
-<%
-String token = (String)request.getAttribute("updateTty");
-String updateResult = (String)request.getAttribute("updateResult");
 
-%>
+
 <script type="text/javascript">
-	updateTry = "<%=token%>";
-	if(updateTry != null){
-		updateResult = "<%=updateResult%>";
-		if(updateResult == true){
-			alert("정보가 성공적으로 수정되었습니다.");
-		}else {
-			alert("정보 수정에 실패하였습니다..");
-		}
-	}
 
+	<c:if test="${!empty updateTty}">
+		<c:if test="${!empty updateResult}">
+			if(updateResult == true){
+				alert("정보가 성공적으로 수정되었습니다.");
+			}else {
+				alert("정보 수정에 실패하였습니다..");
+			}
+		</c:if>
+	</c:if>
 
 
 	function validationCheck(){
 		var form = document.signUpForm;
-
+		var pw1 = form.pw1.value;
+		var pw2 = form.pw2.value;
+		
 		//phoneNo check
  		var phonePattern = /^\d{3}-\d{3,4}-\d{4}$/;
 		var phone = form.phone1.value + "-" + form.phone2.value + "-" + form.phone3.value;
 
-		if(form.pwCheck.value == "false") {
-			alert("비밀번호 확인을 해 주세요.");
-			return false;
+		if (pw1 != "" || pw2 != ""){
+			if (document.signUpForm.hp.value = "false"){
+				alert("비밀번호 일치확인을 해 주세요.");
+				return false;
+			}
+
 		}
-		
-		if(form.authPass.value == "false") {
-			alert("이메일 인증을 진행해 주세요.");
-			return false;
-		}	
 		
 		if(!check(phonePattern, phone, "유효하지 않은 핸드폰 번호입니다.")) {
 			return false;
 		} 
-
-		if(!check(birthdayPattern, birthday, "유효하지 않은 생년월일입니다.")) {
-			return false;
-		}
-		if (sessionStorage.getItem("pwEqualCheck") == "null"){
-			alert("비밀번호 일치확인을 해 주세요.");
-			return false;
-		}
 		
 		alert("회원정보 수정이 성공적으로 완료되었습니다.");
 		form.submit(); 
@@ -159,6 +148,8 @@ String updateResult = (String)request.getAttribute("updateResult");
 		var pw1 = form.pw1.value;
 		var pw2 = form.pw2.value;
 		
+
+		
 		if(!check(passwordPattern, pw1, "비밀번호는 8~15자리의 영문, 숫자, 특수문자로 조합해야 합니다.")) {
 			return false;
 		}
@@ -171,10 +162,9 @@ String updateResult = (String)request.getAttribute("updateResult");
 			return false;
 		}
 		
-		sessionStorage.setItem("pwEqualCheck", "true");
 		document.getElementById('inputPwForm1').readOnly = true;
 		document.getElementById('inputPwForm2').readOnly = true;
-		form.pwCheck.value = true;
+		form.hp.value = "true";
 		alert("사용가능한 비밀번호입니다.");
 	}
 	
@@ -183,7 +173,7 @@ String updateResult = (String)request.getAttribute("updateResult");
 	<%@ include file="myinfoHeader.jsp" %>
 <div class="mainBox">
 	<div class="contentBox">
-		<form name="signUpForm" action="signUpInput.four" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
+		<form name="signUpForm" action="myInfoUpdate.four" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
 		<table align="center">
 			<tr>
 				<td colspan="3" align="left" valign="top" class="td_myinfo"><div style="margin-bottom:10px;">내 정보 수정</div>
@@ -197,7 +187,10 @@ String updateResult = (String)request.getAttribute("updateResult");
 				</td>
 			</tr>
 			<tr>
-				<td align="left" class="td_title">비밀번호 변경</td>
+				<td align="left" class="td_title">
+					<input type="hidden" id="hp" value="false"> 
+					비밀번호 변경
+				</td>
 				<td colspan="2" align="left" class="td_content"><input type="password" name="pw1" id="inputPwForm1" maxlength="15"></td>
 			</tr>
 			<tr>
