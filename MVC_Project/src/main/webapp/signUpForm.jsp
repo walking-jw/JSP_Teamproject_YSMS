@@ -10,10 +10,10 @@
 <title>Insert title here</title>
 
 <style>
-	*{
+	/* *{
 		font-family: 'Nanum Gothic', sans-serif;
 		color: #505050;
-	}
+	} */
 </style>
 
 </head>
@@ -139,70 +139,82 @@
 <%@ include file="header.jsp" %>
 <div class="mainBox">
 	<div class="contentBox">
-		<h2> 회원가입 </h2>
+		<h1> 회원가입 </h1>
 		<form name="signUpForm" action="signUpInput.four" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
-		아이디 <br>
-		<input type="text" name="id" id="inputIdForm"  maxlength="12">
-		<button onclick="idDupleCheck()" type="button" class="btnChk">중복확인</button>
-		<input type="hidden" name="idDupleChecked" id="idDupleChecked" value="false">
-		<hr>
-		비밀번호<br>
-		<table>
+		<table class="table" style="margin-left: auto; margin-right: auto;">
 			<tr>
-				<td><input type="password" name="pw1" id="inputPwForm1" maxlength="15"></td>
-				<td rowspan="2"><button onclick="pwEqualCheck()" type="button" class="btnChk">비밀번호 <br> 확인</button>
+				<th>아이디</th>
+				<td colspan="2"><input type="text" name="id" id="inputIdForm"  maxlength="12">
+				<button onclick="idDupleCheck()" type="button" class="btnChk">중복확인</button>
+				<input type="hidden" name="idDupleChecked" id="idDupleChecked" value="false">
+				</td>
+				<!-- <td><input type="hidden" name="idDupleChecked" id="idDupleChecked" value="false"></td> -->
 			</tr>
 			<tr>
-				<td><input type="password" name="pw2" id="inputPwForm2"  maxlength="15"></td>
+				<th rowspan="2">비밀번호</th>
+				<td rowspan="2"> <input type="password" name="pw1" id="inputPwForm1" maxlength="15">
+				<button onclick="pwEqualCheck()" type="button" class="btnChk">비밀번호  확인</button>
+				<br>
+				<input type="password" name="pw2" id="inputPwForm2"  maxlength="15"><br>
+				<input type="hidden" name="pwCheck" id="pwCheck" value="false"></td>
+			</tr>			
+			<tr>
+				<td></td>
+				
 			</tr>
 			<tr>
-				<td><td><input type="hidden" name="pwCheck" id="pwCheck" value="false"></td>
+				<th>이름</th>
+				<td colspan="2"><input type="text" name="name"></td>
+			</tr>
+			<tr>
+				<th>사진 등록</th>
+				<td colspan="2"><input type="file" name="uploadPhoto" class="file-input" ></td>
+			</tr>
+			<tr>
+				<th>연락처</th>
+				<td colspan="2">
+					<select name="phone1">
+						<option value="010" selected="selected"> 010
+						<option value="011"> 011
+						<option value="018"> 018
+					</select>
+					<input type="text" name="phone2" size="4" maxlength="4">
+					<input type="text" name="phone3" size="4" maxlength="4">
+				</td>
+			</tr>
+			<tr>
+				<th>이메일</th>
+				<td><input type="text" name="email" id="inputEmailForm"  maxlength="30">
+				<button onclick="emailAuthentication()" id="eamilAuthBtn" type="button" class="btnChk">인증 메일 보내기</button></td>
+			</tr>
+			<tr>
+				<th rowspan="2"><a>인증번호 입력</a></th>
+				<td colspan="2"><input type="text" name="authCode" id="inputAuthCode"  maxlength="10" disabled="disabled">
+				<button onclick="authCodeCheck()" id="authCodeCheckBtn" type="button" disabled="disabled" class="btnChk">인증</button>
+				<input type="hidden" name="authPass" id="authPass" value="false">
+				</td>
+				<!-- <td><input type="hidden" name="authPass" id="authPass" value="false"></td> -->
+			</tr>		
+			<tr>
+				<td colspan="2"><a class="a">* 이메일이 도착하는데 1~2분정도 소요될 수 있습니다.</a><br></td>
+			</tr>
+			<tr>
+				<th>생년월일</th>
+				<td colspan="2">
+				<input type="text" name="year" size="4" maxlength="4"><a class="aBirth">년</a> 
+				<input type="text" name="month" size="2" maxlength="2"><a class="aBirth">월 </a>
+				<input type="text" name="day" size="2" maxlength="2"><a class="aBirth">일</a>
+				
+				</td>
+			</tr>		
+		</table>
+		<br>
+		<table class="table2" style="margin-left: auto; margin-right: auto;">
+			<tr>
+				<td align="right"><input type="button" value="가입하기" onclick="validationCheck()" class="button"></td>
 			</tr>
 		</table>
-		<hr>
-		
-		이름 <br>
-		<input type="text" name="name">
-		
-		<hr>
-		
-		
-		사진 등록<br>
-		<input type="file" name="uploadPhoto" class="file-input" >
-		
-		<hr>
-		
-		연락처<br>
-		<select name="phone1">
-			<option value="010" selected="selected"> 010
-			<option value="011"> 011
-			<option value="018"> 018
-		</select>
-		<input type="text" name="phone2" size="4" maxlength="4">
-		<input type="text" name="phone3" size="4" maxlength="4">
-		
-		<hr>
-		
-		이메일<br>
-		<input type="text" name="email" id="inputEmailForm" size="30" maxlength="30">
-		<button onclick="emailAuthentication()" id="eamilAuthBtn" type="button" class="btnChk">인증 메일 보내기</button>
-		<br>
-		<p style="font-size:20px;"><a>인증번호 입력</a></p>
-		<input type="text" name="authCode" id="inputAuthCode" size="10" maxlength="10" disabled="disabled">
-		<button onclick="authCodeCheck()" id="authCodeCheckBtn" type="button" disabled="disabled" class="btnChk">인증</button>
-		<input type="hidden" name="authPass" id="authPass" value="false">
-		<a class="a">* 이메일이 도착하는데 1~2분정도 소요될 수 있습니다.</a>
-		
-		<hr>
-		
-		생년월일<br>
-		
-		<input type="text" name="year" size="4" maxlength="4"><a class="aBirth">년</a> 
-		<input type="text" name="month" size="2" maxlength="2"><a class="aBirth">월 </a>
-		<input type="text" name="day" size="2" maxlength="2"><a class="aBirth">일</a>
-		<br><br>
-		<input type="button" value="가입하기" onclick="validationCheck()" class="button">
-		<br><br>
+			<br>
 		</form>
 	</div>
 </div>

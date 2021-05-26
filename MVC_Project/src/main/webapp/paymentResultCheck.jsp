@@ -53,7 +53,7 @@
 		border-top: 1px solid #F9FFFF;
 	}
 </style>
-<title>${DTO.title} : 너의 공간 나의 공간 your space my space</title>
+<title>너의 공간 나의 공간 your space my space</title>
 </head>
 <body>
 <%@ include file="header.jsp" %>

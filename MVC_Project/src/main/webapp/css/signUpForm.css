@@ -19,7 +19,20 @@ body{
 		margin-top: 50px;
 }
 
+
 /* textfield CSS*/
+input[type=text] {	
+	padding: 3px;
+ 	margin: 3px;
+}
+
+input[type=password] {	
+	padding: 3px;
+ 	margin: 3px;
+}
+
+
+
 input[type=text]:focus {
   background-color: #ace2f9;
 }
@@ -32,6 +45,47 @@ input[type=password]:focus {
   background-color: #ace2f9;
 }*/
 
+
+
+
+/* table CSS */
+
+table.table {
+  width:600px;
+  border-collapse: collapse;
+  text-align: left;
+  line-height: 1.5;
+  font-size:14px;
+  /* border: 1px solid #ccc; */
+  border-top: 1px solid #ccc;
+  margin-left: auto; margin-right: auto;
+}
+table.table th {
+	width:100px;
+  padding: 10px;
+  text-align:right;
+  /* vertical-align: top; */
+ /* border: 1px solid #ccc;*/
+  background: #fbedaa;
+  border-bottom: 1px solid #ccc;
+}
+table.table td {
+  padding: 10px;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+} 
+
+
+/* 가입하기 테이블 CSS */
+table.table2 {
+  width:600px;
+  border-collapse: collapse;
+  text-align: left;
+  line-height: 3;
+  font-size:14px;
+  /* border: 1px solid #ccc; */
+  margin-left: auto; margin-right: auto;
+}
 
 
 /* 확인 버튼 CSS */

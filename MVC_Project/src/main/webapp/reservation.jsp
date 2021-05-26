@@ -167,12 +167,14 @@
 	<c:forEach items="${nextMonthFullDateList}" var = "date">
 		nextMonthFullDateList.push(${date});
 	</c:forEach>
+
 	//---------------- calendar --------------------------
 	
 	//date객체 획득. 가변
 	var today = new Date();
 	//today 보조. 고정
 	var date = new Date();
+
 	//선택되있던 셀 객체 저장
 	var selectedCell;
 	//오늘에 해당하는 월
@@ -269,6 +271,7 @@
 	        } else if (possibleDay[etp] == 1){
 				noCount +=1;
 	        }
+
 			if (noCount > 0){
 				cell.style.backgroundColor = "#E0E0E0";
 				cell.innerHTML = "<font color='#C6C6C6' >" + i + "</font>";
@@ -347,7 +350,9 @@
 		console.log("다음달 이구요")
 		return 1;
 	}
+
 	// ---------------- time table --------------------------
+
 	var price = "<%=price%>";
 	var startTime = "<%=startTime%>";
 	var endTime = "<%=endTime%>";
@@ -355,6 +360,7 @@
 	var selectedFirstTime = 24*1;
 	var selectedFinalTime = 0*1;
 	//예약시간표를 만들 table객체 획득
+
 	
 	function timeTableMaker(selectedMonth, selectedDate){
 		row = null
@@ -450,6 +456,7 @@
 				}
 			}
 		}
+
 	}
 	//시간효 초기화
 	function tableinit(){
@@ -486,6 +493,7 @@
 			nameForm.value = userName;
 			phoneForm.value = userPhone;
 			emailForm.value = userEmail;
+
 		} else {
 			nameForm.value = "";
 			phoneForm.value = "";
@@ -545,23 +553,23 @@
 		<form action="payment.four" method="post" name="paymentForm">
 		<table id="reservation_share" align="center">
 			<tr>
-				<td class="top" colspan="3" align="left">공간명 : ${DETAIL.title}</td>
+				<td class="top" colspan="3" align="left">공간명 ${DETAIL.title}</td>
 			</tr>
 			<tr>
 				<td rowspan="3">
 				<div class="share"><img class="sharePhoto" src="${DETAIL.filePath }"/></div></td>
-				<td class="title" align="left" style="border-top:1px solid #dcdcdc;"> 공간 유형 : </td>
+				<td class="title" align="left" style="border-top:1px solid #dcdcdc;"> 공간 유형 </td>
 				<c:if test="${DETAIL.category == 1 }"><td class="content" align="left" style="border-top:1px solid #dcdcdc;">휴식</td></c:if>
 				<c:if test="${DETAIL.category == 2 }"><td class="content" align="left" style="border-top:1px solid #dcdcdc;">파티</td></c:if>
 				<c:if test="${DETAIL.category == 3 }"><td class="content" align="left" style="border-top:1px solid #dcdcdc;">공부</td></c:if>
 				<c:if test="${DETAIL.category == 4 }"><td class="content" align="left" style="border-top:1px solid #dcdcdc;">회의</td></c:if>
 			</tr>
 			<tr>
-				<td class="title" align="left">최대 인원 : </td>
+				<td class="title" align="left">최대 인원</td>
 				<td class="content" align="left">1 ~ ${DETAIL.capacity}명</td>
 			</tr>
 			<tr>
-				<td class="title" align="left">주소 : </td>
+				<td class="title" align="left">주소</td>
 				<td class="content" align="left">${DETAIL.address1}<br>${DETAIL.address2}</td>
 			</tr>
 		</table>
@@ -605,13 +613,13 @@
 							<td align="center"><label onclick="nextCalendar()"> ▶ </label></td>
 						</tr>
 						<tr>
-							<td align="center"><font color ="#F79DC2">일</font></td>
+							<td align="center"><font color ="#F79DC2">일</td>
 							<td align="center">월</td>
 							<td align="center">화</td>
 							<td align="center">수</td>
 							<td align="center">목</td>
 							<td align="center">금</td>
-							<td align="center"><font color ="skyblue">토</font></td>
+							<td align="center"><font color ="skyblue">토</td>
 						</tr>
 					</table>
 				</td>
