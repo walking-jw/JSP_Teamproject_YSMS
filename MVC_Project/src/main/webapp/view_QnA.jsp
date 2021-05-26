@@ -30,7 +30,6 @@
 	.photo{
 		width: 170px;
 	}
-	
 	textarea{
 		width: 100%;
 		height: 80px;
@@ -41,20 +40,16 @@
 		resize: none;
 		background-color: #fff;
 	}
-	
 	button{
 		margin: 0;
 		padding: 12px;
 		font-size: 13px;
 		color: #fff;
-		
 		text-align: center;
 		text-decoration: none;
 		background-color: #ace2f9;
-		
 		border: none;
 		border-radius: 10px;
-		
 		display: inline-block;
 		width: 100px;
 	}
@@ -64,13 +59,9 @@
 		background-color: #fff;
 		border: 1px solid #ace2f9;
 	}
-	
-	
 	a:link {color: #828282; text-decoration: none; }
 	a:visited {color: #828282; text-decoration: none; }
 	a:hover {text-decoration: underline; color:#ace2f9;}
-
-	
 </style>
 </head>
 <script type="text/javascript">
@@ -80,6 +71,14 @@
 		open(url, "confirm",
 				"roolbar=no, location=no,menubar=no,scrollbars=no,resizable=no,width=450,height=230");
  	}
+	function hiddenbtn() {
+	var target = document.getElementById("target").value;
+	var loginedId = document.getElementById("loginedId").value;
+	var btn = document.getElementById("write");
+	if(target == loginedId){
+		btn.style.display = "none";
+	}	
+}
 </script>
 <body>
 <div class=mainBox>
@@ -91,8 +90,9 @@
 			<div class="underline" style="margin-top:10px; margin-left:5px;"></div>
 			</th>
 			<th align="right">
-			<button type="button" style="font-weight:800;" onclick="writeQna();">작성하기</button>
-			<input type="hidden" id="place_no" value="${placeNo }">
+				<button id="write" type="button" style="font-weight:800;" onclick="writeQna();">작성하기</button>
+				<input type="hidden" id="loginedId" value="${loginedUserID }">
+				<input type="hidden" id="place_no" value="${placeNo }">
 			</th>
 		</tr>
 		<c:choose>
@@ -103,6 +103,7 @@
  			<div class="user">
 			<img class="userProfile" src="userPhoto/${qnaDto.qnaUserFilePath }">
 			</div>
+			<input type="hidden" id = "target" value="${qnaDto.qnaTarget }">
 			</td>
 		</tr>
 		<tr>
@@ -152,5 +153,8 @@
 	</table>
 	</div>
 </div>
+<script type="text/javascript">
+hiddenbtn();
+</script>
 </body>
 </html>

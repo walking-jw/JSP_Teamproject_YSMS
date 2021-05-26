@@ -61,7 +61,7 @@ public class Dao_QnA {
 			 */
 			System.out.println("  -  Query Start : qnaList * *");
 			
-			String query1 = "SELECT q.content, q.updateDate, q.sender, q.answer, q.a_updateDate, q.a_removeDate, q.place_no, u.filePath, s.title ";
+			String query1 = "SELECT q.content, q.updateDate, q.sender, q.answer, q.a_updateDate, q.a_removeDate, q.place_no, u.filePath, s.title, q.target ";
 			String query2 = "FROM qna_review q, user u, share s ";
 			String query3 = "WHERE q.place_no = ? AND u.id = q.sender AND q.place_no = s.place_no AND q.removeDate is null AND q.score is null ";
 			String query4 = "ORDER BY q.no DESC LIMIT ?, ?";
@@ -98,6 +98,7 @@ public class Dao_QnA {
 				int qnaPlace_no = resultSet.getInt("q.place_no");
 				String st_qnaUserFilePath = resultSet.getString("u.filePath");
 				String qnaPlaceName = resultSet.getString("s.title"); 
+				String qnaTarget = resultSet.getString("q.target");
 				
 				
 				// updateDate 형식 yyyy-MM-dd HH:mm:ss로 바꾸기
@@ -130,7 +131,7 @@ public class Dao_QnA {
 				}
 				
 				
-				Dto_QnA qnaDto = new Dto_QnA(qnaContent, qnaQ_updateDate, qnaSender, qnaAnswer, qnaA_updateDate, qnaA_removeDate, qnaPlace_no, qnaUserFilePath, qnaPlaceName);
+				Dto_QnA qnaDto = new Dto_QnA(qnaContent, qnaQ_updateDate, qnaSender, qnaAnswer, qnaA_updateDate, qnaA_removeDate, qnaPlace_no, qnaUserFilePath, qnaPlaceName, qnaTarget);
 				dtoQnA.add(qnaDto);
 				
 				System.out.println(qnaUserFilePath);
