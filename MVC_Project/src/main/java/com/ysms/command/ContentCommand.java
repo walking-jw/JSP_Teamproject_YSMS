@@ -15,7 +15,6 @@ public class ContentCommand implements Command {
 	FilePath file = new FilePath();
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-
 		int no = Integer.parseInt(request.getParameter("no"));
 
 		Dao_Share dao = new Dao_Share();
@@ -29,7 +28,10 @@ public class ContentCommand implements Command {
 			request.setAttribute("fileName", fileName);
 		}
 		request.setAttribute("DETAIL", dto);
+		System.out.println("@@@@@@@@@@@@@dayLimit : " + dto.getDayLimit());
+		request.setAttribute("dayLimit", dto.getDayLimit());
 		System.out.println(no);
 	}
+	
 
 }
