@@ -110,14 +110,13 @@
 		</tr>
 				</c:if>
 		<tr>
-			<td colspan="3">
-			<textarea readonly="readonly" disabled="disabled">${reviewDto.reviewContent }</textarea></td>
+			<td colspan="3" align="left"><pre>${reviewDto.reviewContent }</pre></td>
 		</tr>
 		</c:forEach>
 		</c:when>
 		<c:otherwise>
 			<tr>
-				<td colspan="3"><textarea readonly="readonly" disabled="disabled">등록된 후기가 없습니다.</textarea></td>
+				<td align="center" colspan="3">등록된 후기가 없습니다.</td>
 			</tr>
 		</c:otherwise>
 		</c:choose>

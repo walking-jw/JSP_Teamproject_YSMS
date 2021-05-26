@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
-<title>문의 목록 </title>
+<title>${hostQnaShareTitle }의 문의 목록 </title>
 <style>
 
         #hostQna { border-collapse:collapse; width:800px}
@@ -49,7 +49,7 @@
 <%@ include file="header.jsp" %>
 
 
-	<h3 style="text-align: center;">문의 목록</h3>
+	<h3 style="text-align: center;">${hostQnaShareTitle }의 문의 목록</h3>
 	<table class="table" id="hostQna">
 		<tr>
 			<th></th>
@@ -99,7 +99,7 @@
 		</c:when>
 		<c:otherwise>
 			<tr>
-				<td colspan="5">등록된 질문이 없습니다.</td>
+				<td colspan="5" align="center">등록된 질문이 없습니다.</td>
 			</tr>
 		</c:otherwise>
 		</c:choose>

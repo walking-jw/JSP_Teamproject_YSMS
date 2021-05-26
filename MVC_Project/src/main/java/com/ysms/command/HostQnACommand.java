@@ -69,6 +69,9 @@ public class HostQnACommand implements Command {
 				request.setAttribute("hostQnaList", hostDtoQnA);
 			
 			}
+		String qnaPlaceName = dao.shareTitle(place_no);
+		session.setAttribute("hostQnaShareTitle", qnaPlaceName);
+		
 	}
 	
 	

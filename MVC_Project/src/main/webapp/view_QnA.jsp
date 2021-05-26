@@ -83,12 +83,12 @@
  	}
 	function hiddenbtn() {
 	
-	var target = document.getElementById("target").value;
+	var host = document.getElementById("host").value;
 	var loginedId = document.getElementById("loginedId").value;
 
 	var btn = document.getElementById("write");
 	
-	if(target == loginedId){
+	if(host == loginedId){
 		btn.style.display = "none";
 	}	
 }
@@ -105,6 +105,7 @@
 			</th>
 			<th align="right">
 				<button id="write" type="button" style="font-weight:800;" onclick="writeQna();">작성하기</button>
+				<input type="hidden" id="host" value="${host }">
 				<input type="hidden" id="loginedId" value="${loginedUserID }">
 				<input type="hidden" id="place_no" value="${placeNo }">
 			</th>
@@ -117,7 +118,6 @@
  			<div class="user">
 			<img class="userProfile" src="userPhoto/${qnaDto.qnaUserFilePath }">
 			</div>
-			<input type="hidden" id = "target" value="${qnaDto.qnaTarget }">
 			</td>
 		</tr>
 		<tr>
@@ -125,7 +125,7 @@
 			<td align="right"><span style="font-size:13px;">${qnaDto.qnaQ_updateDate }</span></td>
 		</tr>
 		<tr>
-			<td colspan="2"><textarea readonly="readonly" disabled="disabled">${qnaDto.qnaContent }</textarea></td>
+			<td colspan="2" align="left"><pre>${qnaDto.qnaContent }</pre></td>
 		</tr>
 		<tr>
 		</tr>
@@ -141,7 +141,7 @@
 			<td align="right"><span style="font-size:13px;">${qnaDto.qnaA_updateDate }</span></td>
 		</tr>
 		<tr>
-			<td colspan="2"><textarea readonly="readonly" disabled="disabled">${qnaDto.qnaAnswer }</textarea></td>
+			<td colspan="2" align="left"><pre>${qnaDto.qnaAnswer }</pre></td>
 		</tr>
 		<tr>
 		</tr>
@@ -150,8 +150,6 @@
 		<c:otherwise>
 			<tr>
 				<td colspan="2">
-<!-- 				<textarea rows="5" cols="50" readonly="readonly" style="resize:none;">
-				등록된 질문이 없습니다.</textarea> -->
 				<p align="center" style="font-weight:700;">등록된 질문이 없습니다.</p>
 				</td>
 			</tr>

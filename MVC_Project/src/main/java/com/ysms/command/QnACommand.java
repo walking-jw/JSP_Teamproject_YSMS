@@ -53,7 +53,7 @@ public class QnACommand implements Command {
 		ArrayList<Integer> pageList = calcNumOfPage(countedTuple);
 		// 페이지 목록을 세션에 담는다. *list에 진입하면 무조건 세션이 갱신되므로 새 글이 생겨도 최신화가 된다.
 		session.setAttribute("qnaPageList", pageList);
-
+		
 		
 		// QnA List 호출
 		ArrayList<Dto_QnA> dtoQnA = dao.qnaList(place_no, qnaRequestPage, qnaNumOfTuplesPerPage);
@@ -66,6 +66,11 @@ public class QnACommand implements Command {
 			
 			}
 			System.out.println(dtoQnA.isEmpty());
+			
+		
+		// host id 호출
+		String host = dao.shareUserId(place_no);
+		session.setAttribute("host", host);
 	}
 	
 	

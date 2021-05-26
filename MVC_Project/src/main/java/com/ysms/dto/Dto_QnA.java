@@ -22,7 +22,6 @@ public class Dto_QnA {
 	String qnaYesNo;
 	
 	
-	
 	// Constructor
 	public Dto_QnA() {
 		// TODO Auto-generated constructor stub
@@ -92,8 +91,14 @@ public class Dto_QnA {
 		this.qnaContent = qnaContent;
 		this.qnaAnswer = qnaAnswer;
 	}
-	
 
+	
+	public Dto_QnA(String qnaTarget) {
+		super();
+		this.qnaTarget = qnaTarget;
+	}
+
+	
 	public int getQnaNo() {
 		return qnaNo;
 	}
