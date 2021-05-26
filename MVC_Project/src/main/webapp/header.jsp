@@ -109,16 +109,23 @@
 	</c:if>
 	<!-- 로그인 성공시 메인페이지에 추가적으로 정보 표시 -->
 	<c:set var="loginedUserID" value="${loginedUserID }" />
-	<c:choose>
-		<c:when test="${!empty loginedUserID}">
-			${loginedUserID}님, 환영합니다.	
-			<a href="mypage.four">마이페이지</a>
-			<a href="logout.four">로그아웃</a>
-		</c:when>
-		<c:otherwise>
+	<c:if test="${empty loginedUserID }">
 			<a href="loginForm.jsp">로그인</a>
-		</c:otherwise>	
-	</c:choose>
+	</c:if>
+	<c:if test="${!empty loginedUserID }">
+		<c:choose>
+			<c:when test="${loginedUserID eq 'admin' }">
+				<a href="#">회원관리</a>
+				<a href="mypage.four">마이페이지</a>
+				<a href="logout.four">로그아웃</a>
+			</c:when>
+			<c:otherwise>			
+					${loginedUserID}님, 환영합니다.	
+					<a href="mypage.four">마이페이지</a>
+					<a href="logout.four">로그아웃</a>
+			</c:otherwise>	
+		</c:choose>
+	</c:if>
 	
 	<!-- <a href="#">로그인</a> -->
 </div>
