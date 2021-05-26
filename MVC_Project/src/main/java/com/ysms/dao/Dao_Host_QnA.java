@@ -203,23 +203,23 @@ public class Dao_Host_QnA {
 	
 	
 	// delete host answer
-		public void hostDeleteQnA(int qna_no) {
-			Connection connection = null;
-			PreparedStatement preparedStatement = null;
-			
-			try {
-				connection = dataSource.getConnection();
-				
-				String query = "UPDATE qna_review SET a_submitDate = null, a_removeDate = now() WHERE no = ? ";
-				
-				preparedStatement = connection.prepareStatement(query);
-				preparedStatement.setInt(1, qna_no);
-				preparedStatement.executeUpdate();
-				
-			
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
+	public void hostDeleteQnA(int qna_no) {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		try {
+			connection = dataSource.getConnection();
+
+			String query = "UPDATE qna_review SET a_submitDate = null, a_removeDate = now() WHERE no = ? ";
+
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setInt(1, qna_no);
+			preparedStatement.executeUpdate();
+
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
 				try {
 					if(preparedStatement != null) preparedStatement.close();
 					if(connection != null) connection.close();
@@ -241,7 +241,7 @@ public class Dao_Host_QnA {
 				connection = dataSource.getConnection();
 				
 				String query = "UPDATE qna_review SET answer = ?, a_submitDate = now(), a_updateDate = now(), a_removeDate = null WHERE no = ? ";
-				
+	
 				preparedStatement = connection.prepareStatement(query);
 				preparedStatement.setString(1, qna_answer);
 				preparedStatement.setInt(2, qna_no);
@@ -263,7 +263,41 @@ public class Dao_Host_QnA {
 			
 		}
 	
-	
+		// 공간 이름 불러오기
+		public String shareTitle(int place_no) {
+			Connection connection = null;
+			PreparedStatement preparedStatement = null;
+			ResultSet resultSet = null;
+
+			String qnaPlaceName =  "";
+			String query = "select title from share where place_no = ? ";
+
+			try {
+				connection = dataSource.getConnection();
+				preparedStatement = connection.prepareStatement(query);
+				preparedStatement.setInt(1, place_no);
+
+				resultSet = preparedStatement.executeQuery();
+
+
+
+				if(resultSet.next()) {
+					qnaPlaceName = resultSet.getString(1);
+				}
+
+			}catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				try {
+					if(resultSet != null) resultSet.close();
+					if(preparedStatement != null) preparedStatement.close();
+					if(connection != null) connection.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			return qnaPlaceName;
+		}
 	
 	
 }//end line

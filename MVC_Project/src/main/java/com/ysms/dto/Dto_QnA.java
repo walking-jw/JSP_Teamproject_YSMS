@@ -31,7 +31,9 @@ public class Dto_QnA {
 	// qna List - qnaDto
 	// qnaContent, qnaQ_updateDate, qnaSender, qnaAnswer, qnaA_updateDate, qnaA_removeDate
 	public Dto_QnA(String qnaContent, String qnaQ_updateDate, String qnaSender, String qnaAnswer,
-			String qnaA_updateDate, String qnaA_removeDate, int qnaPlace_no, String qnaUserFilePath, String qnaPlaceName, String qnaTarget) {
+			String qnaA_updateDate, String qnaA_removeDate, int qnaPlace_no, 
+			String qnaUserFilePath, String qnaPlaceName, String qnaTarget) {
+		
 		super();
 		this.qnaContent = qnaContent;
 		this.qnaQ_updateDate = qnaQ_updateDate;
@@ -45,6 +47,11 @@ public class Dto_QnA {
 		this.qnaTarget = qnaTarget;
 	}
 	
+	
+	public Dto_QnA(String qnaTarget) {
+		super();
+		this.qnaTarget = qnaTarget;
+	}
 	
 	// myinfo_qna List
 	// qnaNo, qnaContent, qnaQ_updateDate, qnaAnswer, qnaA_removeDate, 

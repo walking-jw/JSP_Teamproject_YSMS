@@ -66,6 +66,11 @@ public class QnACommand implements Command {
 			
 			}
 			System.out.println(dtoQnA.isEmpty());
+			
+
+			// host id 호출
+			String host = dao.shareUserId(place_no);
+			session.setAttribute("host", host);
 	}
 	
 	

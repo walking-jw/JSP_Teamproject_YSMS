@@ -144,12 +144,12 @@
 				<tr>
 					<td><a href="SearchPlaceCommand.four?categorySpace=0&location=강남"><img alt="Gangnam icon" src="img/ysms_hotPlace_Gangnam.png"></a></td>
 					<td><a href="SearchPlaceCommand.four?categorySpace=0&location=종로"><img alt="Jongno icon" src="img/ysms_hotPlace_Jongno.png"></a></td>
-					<td><a href="SearchPlaceCommand.four?categorySpace=0&location=홍대"><img alt="Hongdae icon" src="img/ysms_hotPlace_Hongdae.png"></a></td>
+					<td><a href="SearchPlaceCommand.four?categorySpace=0&location=마포"><img alt="Hongdae icon" src="img/ysms_hotPlace_Hongdae.png"></a></td>
 				</tr>
 				<tr>
 					<td><a href="SearchPlaceCommand.four?categorySpace=0&location=강남">강남</a></td>
 					<td><a href="SearchPlaceCommand.four?categorySpace=0&location=종로">종로</a></td>
-					<td><a href="SearchPlaceCommand.four?categorySpace=0&location=홍대">홍대</a></td>
+					<td><a href="SearchPlaceCommand.four?categorySpace=0&location=마포">홍대</a></td>
 				</tr>
 			</table>
 		</div>

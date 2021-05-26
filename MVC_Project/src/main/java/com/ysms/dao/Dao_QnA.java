@@ -61,7 +61,7 @@ public class Dao_QnA {
 			 */
 			System.out.println("  -  Query Start : qnaList * *");
 			
-			String query1 = "SELECT q.content, q.updateDate, q.sender, q.answer, q.a_updateDate, q.a_removeDate, q.place_no, u.filePath, s.title, q.target ";
+			String query1 = "SELECT q.content, q.updateDate, q.sender, q.answer, q.a_updateDate, q.a_removeDate, q.place_no, u.filePath, s.title, s.user_id ";
 			String query2 = "FROM qna_review q, user u, share s ";
 			String query3 = "WHERE q.place_no = ? AND u.id = q.sender AND q.place_no = s.place_no AND q.removeDate is null AND q.score is null ";
 			String query4 = "ORDER BY q.no DESC LIMIT ?, ?";
@@ -92,14 +92,13 @@ public class Dao_QnA {
 				String qnaContent = resultSet.getString("q.content");
 				Timestamp tsQ_updateDate = resultSet.getTimestamp("q.updateDate");
 				String qnaSender = resultSet.getString("q.sender");
+				String qnaTarget = resultSet.getString("s.user_id");
 				String qnaAnswer = resultSet.getString("q.answer");
 				Timestamp tsA_updateDate = resultSet.getTimestamp("q.a_updateDate");
 				Timestamp tsA_removeDate = resultSet.getTimestamp("q.a_removeDate");
 				int qnaPlace_no = resultSet.getInt("q.place_no");
 				String st_qnaUserFilePath = resultSet.getString("u.filePath");
 				String qnaPlaceName = resultSet.getString("s.title"); 
-				String qnaTarget = resultSet.getString("q.target");
-				
 				
 				// updateDate 형식 yyyy-MM-dd HH:mm:ss로 바꾸기
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -132,6 +131,7 @@ public class Dao_QnA {
 				
 				
 				Dto_QnA qnaDto = new Dto_QnA(qnaContent, qnaQ_updateDate, qnaSender, qnaAnswer, qnaA_updateDate, qnaA_removeDate, qnaPlace_no, qnaUserFilePath, qnaPlaceName, qnaTarget);
+				
 				dtoQnA.add(qnaDto);
 				
 				System.out.println(qnaUserFilePath);
@@ -219,5 +219,40 @@ public class Dao_QnA {
 			}
 		}
 	}
+	
+	public String shareUserId(int place_no) {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		String target =  "";
+		String query = "select user_id from share where place_no = ? ";
+
+		try {
+			connection = dataSource.getConnection();
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setInt(1, place_no);
+
+			resultSet = preparedStatement.executeQuery();
+
+			if(resultSet.next()) {
+				target = resultSet.getString(1);
+			}
+
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(resultSet != null) resultSet.close();
+				if(preparedStatement != null) preparedStatement.close();
+				if(connection != null) connection.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return target;
+	}
+
+	
 	
 }//end line
