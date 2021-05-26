@@ -14,6 +14,21 @@ public class Dto_Payment {
 	int resCapacity;
 	
 	public Dto_Payment() {}
+	
+	
+	
+	public Dto_Payment(int place_no, String checkInDate, int startTime, int endTime, int price, String resName, String resPhone,
+			String resEmail, int resCapacity) {
+		this.place_no = place_no;
+		this.checkInDate = checkInDate;
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.price = price;
+		this.resName = resName;
+		this.resPhone = resPhone;
+		this.resEmail = resEmail;
+		this.resCapacity = resCapacity;
+	}
 
 	public Dto_Payment(String checkInDate, int startTime, int endTime, int price, String user_id, int place_no,
 			String resName, String resPhone, String resEmail, int resCapacity) {

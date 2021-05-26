@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
-<title>MVC Board</title>
+<title>공간 나눔 목록 리스트</title>
 </head>
 <body>
 	<%@ include file="header.jsp" %>

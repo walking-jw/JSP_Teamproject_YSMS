@@ -62,6 +62,7 @@ import com.ysms.command.WriteCommand;
 import com.ysms.command.WriteQnACommand;
 import com.ysms.command.WriteReviewCommand;
 import com.ysms.command.WriteSpaceCommand;
+import com.ysms.command.paymentResultDetailViewCommand;
 
 /**
  * Servlet implementation class FrontController
@@ -176,7 +177,12 @@ public class FrontController extends HttpServlet {
 				command.execute(request, response);
 				viewPage = "myinfoRentalList_previous.jsp";
 				break;	
-			
+			//추가 2021 05 27 윤재필
+			case "/paymentResultDetailView.four":
+				command = new paymentResultDetailViewCommand();
+				command.execute(request, response);
+				viewPage = "paymentResultCheck.jsp";
+				break;
 				
 			// * * * * * * * * * * * * * * * * * *//
 				

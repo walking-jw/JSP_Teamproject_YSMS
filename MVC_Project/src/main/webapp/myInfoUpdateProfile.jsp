@@ -96,6 +96,7 @@
 </head>
 
 
+
 <script type="text/javascript">
 
 	<c:if test="${!empty updateTty}">
@@ -169,6 +170,7 @@
 	}
 	
 </script>
+
 <body>
 	<%@ include file="myinfoHeader.jsp" %>
 <div class="mainBox">

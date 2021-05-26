@@ -12,6 +12,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import com.ysms.common.LoginedUserInfo;
+import com.ysms.dto.Dto_Payment;
 import com.ysms.dto.Dto_Reservation_rental;
 
 public class Dao_Reservation {
@@ -135,5 +137,59 @@ public class Dao_Reservation {
 		return result;
 		
 	}
+
+	public Dto_Payment findRental(int no) {
+		Dto_Payment dto = null;
+		String query = "SELECT place_no, checkInDate, startTime, endTime, resName, resPhone, resEmail, resCapacity, price FROM rental WHERE no = ?";
+
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+
+		String userID = null;
+
+		try {
+			conn = dataSource.getConnection();
+			psmt = conn.prepareStatement(query);
+			psmt.setInt(1, no);
+			rs = psmt.executeQuery();
+
+			if (rs.next()) {
+				int place_no = rs.getInt("place_no");
+				String checkInDate = rs.getString("checkInDate");
+				int startTime = rs.getInt("startTime");
+				int endTime = rs.getInt("endTime");
+				String resName = rs.getString("resName");
+				String resPhone = rs.getString("resPhone");
+				String resEmail = rs.getString("resEmail");
+				int resCapacity = rs.getInt("resCapacity");
+				int price = rs.getInt("price");
+				
+				dto = new Dto_Payment(place_no, checkInDate, startTime, endTime, price, resName, resPhone, resEmail, resCapacity);
+				System.out.println("place_no : " + place_no +", checkInDate:" + checkInDate+", start-endTime : " + startTime + "-" + startTime + 
+						", resName :" + resName + ", resPhone : " + resPhone +", resEmail : " + resEmail + ", resCapacity : " + resCapacity );
+				
+				System.out.println("findRental success");
+			}
+		} catch (Exception e) {
+			System.out.println("loginProcess fail");
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (psmt != null)
+					psmt.close();
+				if (conn != null)
+					conn.close();
+				System.out.println("< rs, psmt, conn close success>");
+			} catch (Exception e) {
+				System.out.println("< rs, psmt, conn close Fail>");
+			}
+		}
+
+		return dto;
+	}
+	
 }
 

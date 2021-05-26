@@ -45,14 +45,14 @@
 			</tr> 
 			<tr>
 				<th>시작시간</th>
-				<td><input type="text" name="startTime" size="50"></td>
+				<td><input type="text" name="startTime" size="50" placeholder="영업시작 시간을 입력해주세요(예:오전 8시이면 08을 입력)"></td>
 			</tr> 
 			<tr>
 				<th>종료시간</th>
-				<td><input type="text" name="endTime" size="50"></td>
+				<td><input type="text" name="endTime" size="50" placeholder="영업종료 시간을 입력해주세요(예:오후 8시이면 20을 입력)"></td>
 			</tr> 
 			<tr>
-				<td>예약가능요일</td>
+				<th>예약가능요일</th>
 				<td>
 					<input type="hidden" id="dayLimit" name="dayLimit" value="" size="50">
 					<input type="checkbox" value="1000000" onclick="dateHandler(this)" checked="checked">일

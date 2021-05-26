@@ -95,6 +95,13 @@
 	a:visited {color: #828282; text-decoration: none; }
 	a:hover {text-decoration: underline; color:#ace2f9;}
 </style>
+<script type="text/javascript">
+function moveToDetail(btn){
+	hiddenForm = document.hf;
+	document.getElementById("hn").value = btn.value;
+	hiddenForm.submit();
+}
+</script>
 <body>
 <%@ include file="myinfoHeader.jsp" %>
 <div class="mainBox">
@@ -135,7 +142,7 @@
 					<tr>
 						<td class="td_title">총 금액 :</td>
 						<td class="td_content" colspan="2">&#8361; <fmt:formatNumber value="${rentalSCDto.rentalPrice }" pattern="#,###"/></td>
-						<td align="right"><button class="button_detail">예약 상세 보기</button></td>
+						<td align="right"><button class="button_detail" value="${rentalSCDto.rentalNo }" onclick="moveToDetail(this)">예약 상세 보기</button></td>
 					</tr>
 				</table>
 			</td></tr>
@@ -156,7 +163,9 @@
 		</table>
 	</div>
 </div>
-
+<form action="paymentResultDetailView.four" method="post" name="hf" >
+<input type="hidden" name="hn" value="" id="hn">
+</form>
 <%@ include file="footer.jsp" %>
 
 </body>

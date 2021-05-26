@@ -5,7 +5,7 @@ public class Dto_Share {
 	String title;
 	String user_id;
 	String introduce;
-	Timestamp date;
+	String date;
 	Timestamp registrationDate;
 	Timestamp removeDate;
 	
@@ -125,7 +125,7 @@ public class Dto_Share {
 		
 	}
 
-	public Dto_Share(int no, String title, String user_id, Timestamp date, int place_no) {
+	public Dto_Share(int no, String title, String user_id, String date, int place_no) {
 		super();
 		this.no = no;
 		this.user_id = user_id;
@@ -134,7 +134,7 @@ public class Dto_Share {
 		this.place_no = place_no;
 	}
 
-	public Dto_Share(int no, String title, String user_id, String introduce, Timestamp date, String filePath) {
+	public Dto_Share(int no, String title, String user_id, String introduce, String date, String filePath) {
 		super();
 		this.no = no;
 		this.user_id = user_id;
@@ -249,11 +249,11 @@ public class Dto_Share {
 		this.introduce = introduce;
 	}
 
-	public Timestamp getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Timestamp date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
