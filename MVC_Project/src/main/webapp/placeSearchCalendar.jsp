@@ -4,8 +4,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+<title>예약을 원하시는 날짜를 선택해 주세요</title>
 </head>
+<style>
+	#calendar{margin-bottom:50px; padding: 10px; width:250px; color: #505050; border: 1px solid #dcdcdc;}
+	#calendar td{padding:10px;	}
+</style>
+
 <script type="text/javascript">
 
 //---------------- calendar --------------------------
@@ -127,7 +134,7 @@ function buildCalendar(){
 
 </script>
 <body>
-<table id="calendar" border="1">
+<table id="calendar" align="center">
 		<tr>
 			<td align="center"><label onclick="prevCalendar()"> ◀ </label></td>
 			<td colspan="5" align="center" id="calendarTitle">yyyy년 m월</td>

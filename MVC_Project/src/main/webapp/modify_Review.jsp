@@ -5,8 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-	<link rel="stylesheet" href="css/spaceDetailView_QnaReview.css" type="text/css">
-<title>modify review</title>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/reviewCRUD.css" type="text/css">
+<title>Modify Review</title>
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -49,14 +51,18 @@
 	<form name="modifyReview" action="review_modify.four" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="rentalNo" value="${rentalNo }">
 		<input type="hidden" name="reviewOldFilePath" value="${reviewOldFilePath }">
-	<table>
+	<table id="modifyReview" align="center">
 		<tr>		
-			<td><h3>리뷰 수정</h3></td>
-			<td></td>
+			<th align="left">리뷰 수정</th>
+			<th align="right">
+			<input type="button" value="돌아가기" onclick="history.back();">
+			<input type="reset" value="지우기" class="btn-delete">
+			<input type="button" value="수정" onclick="checkReviewContent();">
+			</th>
 		</tr>
 		<tr>
-			<td>공간평점 : </td>
-			<td><select name="reviewScore">
+			<td class="title" align="left">공간점수</td>
+			<td class="title" align="left"><select name="reviewScore">
 				<option value="">공간점수</option>
 				 <option value="5" <c:if test="${reviewScore == 5 }"> selected </c:if>>5</option>
 				<option value="4" <c:if test="${reviewScore == 4 }"> selected </c:if>>4</option>
@@ -67,33 +73,29 @@
 			</td>
 		</tr>
 		<tr>
-			<td>첨부파일</td>
-			<td>
+			<td class="title">첨부파일</td>
+			<td class="title">
 			<input type="file" name="reviewImg" id="reviewImg" accept="image/*">
 			 </td>
-		</tr> 
+		</tr>
  		<tr>
-   			<td colspan="2">
+   			<td colspan="2" align="center">
+			<div class="review">
 			    <div id="preview">
 			    <c:if test="${!empty reviewOldFilePath }">
-			    <img src="reviewPhoto/${reviewOldFilePath }" width='300'>
+			    <img class="reviewPhoto" src="reviewPhoto/${reviewOldFilePath }">
 			    </c:if>
 			    </div>
+			</div>
    			</td>
    		</tr>
 		<tr>
-			<td colspan="2"><textarea rows="5" cols="50" name="reviewContent">${reviewContent }</textarea></td>
-		</tr>
-		<tr>
-			<td clospan="2">
-			<input type="button" value="돌아가기" onclick="history.back();">
-			<input type="reset" value="지우기" class="btn-delete">
-			<input type="button" value="수정" onclick="checkReviewContent();"></td>
-		</tr>				
+			<td colspan="2" align="center">
+			<textarea name="reviewContent">${reviewContent }</textarea></td>
+		</tr>			
 	</table>	
 	</form>
 </body>
-
 <script type="text/javascript">
 
 function readInputFile(input) {

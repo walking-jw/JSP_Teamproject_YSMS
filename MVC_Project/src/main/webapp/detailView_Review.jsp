@@ -5,7 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="css/spaceDetailView_QnaReview.css" type="text/css">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/reviewCRUD.css" type="text/css">
 <title>내가 쓴 리뷰</title>
 </head>
 <script type="text/javascript">
@@ -23,25 +25,51 @@
 	session.setAttribute("rentalNo", rentalNo);
 %>
 	<form name="reviewDetail" action="modify_review.four" method="post">
-	<table border="1">
+	<table id="detailReview" align="center">
 		<tr>
-			<th><h3>내가 쓴 리뷰</h3></th>
-			<th>
+			<th align="left">내가 쓴 리뷰</th>
+			<th align="right">
 			<input type="hidden" name="rentalNo" value="${rentalNo }">
 			<input type="hidden" name="reviewScore" value="${detailViewReview.reviewScore }">
 			<input type="hidden" name="reviewFilePath" value="${detailViewReview.reviewFilePath }">
+			<input type="hidden" name="reviewContent" value="${detailViewReview.reviewContent }">
 			<input type="button" value="수정하기" onclick="modifyReview();">
 			<input type="button" value="삭제하기" onclick="deleteReview();">
 			<input type="button" value="닫기" onclick="window.close();">
 			</th>
 		</tr>
 		<tr>
-			<td>${detailViewReview.reviewPlaceName }</td>
-			<td>${detailViewReview.reviewScore }</td>
+			<td class="title" align="left">${detailViewReview.reviewPlaceName }</td>
+			<td class="title" align="right">
+			<c:if test="${detailViewReview.reviewScore == 5 }">
+				<img class="reviewScore" src="reviewPhoto/cloudCoverPink.PNG">
+				<img class="reviewScore" src="reviewPhoto/cloudCoverPink.PNG">
+				<img class="reviewScore" src="reviewPhoto/cloudCoverPink.PNG">
+				<img class="reviewScore" src="reviewPhoto/cloudCoverPink.PNG">
+				<img class="reviewScore" src="reviewPhoto/cloudCoverPink.PNG">
+				</c:if>
+				<c:if test="${detailViewReview.reviewScore == 4 }">
+				<img class="reviewScore" src="reviewPhoto/cloudCoverPink.PNG">
+				<img class="reviewScore" src="reviewPhoto/cloudCoverPink.PNG">
+				<img class="reviewScore" src="reviewPhoto/cloudCoverPink.PNG">
+				<img class="reviewScore" src="reviewPhoto/cloudCoverPink.PNG">
+				</c:if>
+				<c:if test="${detailViewReview.reviewScore == 3 }">
+				<img class="reviewScore" src="reviewPhoto/cloudCoverPink.PNG">
+				<img class="reviewScore" src="reviewPhoto/cloudCoverPink.PNG">
+				<img class="reviewScore" src="reviewPhoto/cloudCoverPink.PNG">
+				</c:if>
+				<c:if test="${detailViewReview.reviewScore == 2 }">
+				<img class="reviewScore" src="reviewPhoto/cloudCoverPink.PNG">
+				<img class="reviewScore" src="reviewPhoto/cloudCoverPink.PNG">
+				</c:if>
+				<c:if test="${detailViewReview.reviewScore == 1 }">
+				<img class="reviewScore" src="reviewPhoto/cloudCoverPink.PNG">
+				</c:if></td>
 		</tr>
 		<c:if test="${!empty detailViewReview.reviewFilePath }">
 		<tr>
-			<td colspan="2">
+			<td class="photo" colspan="2" align="center">
 				<div class="review">
 				<img class="reviewPhoto" src="reviewPhoto/${detailViewReview.reviewFilePath }">
 				</div>
@@ -49,13 +77,12 @@
 		</tr>
 		</c:if>
 		<tr>
-			<td colspan="2">
-			<textarea name="reviewContent" rows="15" cols="50" readonly="readonly" style="resize:none;">${detailViewReview.reviewContent }
-			</textarea>
+			<td colspan="2" class="content" valign="top">
+			<pre>${detailViewReview.reviewContent }</pre>
 			</td>
 		</tr>
 		<tr>
-			<td colspan="2">
+			<td colspan="2" class="date">
 				${detailViewReview.reviewUpdateDate }
 			</td>
 		</tr>

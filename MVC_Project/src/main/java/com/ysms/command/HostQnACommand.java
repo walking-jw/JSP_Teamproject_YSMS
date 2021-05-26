@@ -32,8 +32,8 @@ public class HostQnACommand implements Command {
 		
 		System.out.println("Dao_QnA - execute");;
 		
-		int place_no = Integer.parseInt(request.getParameter("place_no"));
 		
+		int place_no = Integer.parseInt(request.getParameter("place_no"));
 		
 		
 		// 사용자가 요청한 페이지 번호 초기값은 가장 최신글을 보여주는 1
@@ -60,7 +60,7 @@ public class HostQnACommand implements Command {
 		
 		// QnA List 호출
 		ArrayList<Dto_QnA> hostDtoQnA = dao.hostQnaList(place_no, qnaRequestPage, qnaNumOfTuplesPerPage);
-		
+			
 		String empty = "";
 		
 			if(hostDtoQnA.isEmpty() == true) {

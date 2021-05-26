@@ -10,35 +10,149 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/reservation.css" type="text/css">
+<title>Reservation : ${DETAIL.title}</title>
+<style>
+	#reservation_share{
+		margin:50px;
+		width:970px;
+		border-collapse:collapse;
+		color: #505050;
+/* 		border: 1px solid #f0f0f0; */
+	}
+	#reservation_share td.top{	
+		padding-bottom: 10px;
+		font-weight:700; font-size:25px;
+	}
+	
+	#reservation_share td.title{
+		padding-left: 15px;
+		width:110px;
+		height: 90px;
+		font-weight:700;
+		font-size:20px;
+		border-bottom: 1px solid #dcdcdc;
+		background-color: #fbedaa;
+	}
+	#reservation_share td.content{
+		font-size:19px;
+		width:320px;
+		padding-left:20px;
+		border-bottom: 1px solid #dcdcdc;
+	}
+	
+	#reservation_user{
+		margin:50px;
+		width:600px;
+		border-collapse:collapse;
+		color: #505050;
+/* 		border: 1px solid #dcdcdc; */
+	}
+	#reservation_user td.top{	
+		padding-bottom: 20px;
+		font-weight:700; font-size:25px;
+	}
+	
+	#reservation_user td.title{
+		padding : 15px;
+		font-weight:700;
+		font-size:20px;
+	}
+	#reservation_user td.content{
+		font-size:19px;
+		width:450px;
+		padding-left:20px;
+	}
+	
+	#reservation_time{
+		margin:50px;
+		width:600px;
+		border-collapse:collapse;
+		color: #505050;
+/* 		border: 1px solid #dcdcdc; */
+	}
+	#reservation_time td.top{
+		padding-bottom: 20px;
+		font-weight:700; font-size:25px;
+	}
+	#reservation_time td.content{
+		padding-bottom: 50px;
+	}
+	
+	#calendar{margin-bottom:50px; padding: 10px; width:250px; color: #505050; border: 1px solid #dcdcdc;}
+	#calendar td{padding:10px;	}
+	
+	#timeTable{margin-bottom:50px; padding: 5px; width:200px; color: #505050;}
+	#timeTable td{padding:8px;	}
+	
+	#selectedDate{width: 200px; height: 25px;	padding: 10px; 
+		color: #505050; font-size:17px;	background-color: #fff;	border: 1px solid #dcdcdc;	}
+	#selectedTime{width: 200px; height: 25px;	padding: 10px; 
+		color: #505050; font-size:17px;	background-color: #fff;	border: 1px solid #dcdcdc;	}
+	#totalPrice{width: 200px; height: 25px;	padding: 10px; 
+		color: #505050; font-size:17px;	background-color: #fff;	border: 1px solid #dcdcdc;	}
+	
+	#btn_submit{
+		margin: 0;
+		padding: 20px;
+		text-align: center;
+		text-decoration: none;
+		font-size: 20px; color:#fff;
+		background-color: #ace2f9;
+		font-weight:700;
+	
+		border: none;
+/* 		border-radius: 10px; */
+		
+		display: inline-block;
+		width: 300px;
+	}
+	#btn_submit:hover{
+		margin: 0;
+		padding: 20px;
+		text-align: center;
+		text-decoration: none;
+		font-size: 20px; color:#ace2f9;
+		background-color: #fff;
+		font-weight:700;
+	
+		border: 1px solid #ace2f9;
+/* 		border-radius: 10px; */
+		
+		display: inline-block;
+		width: 300px;
+	}
+	
+</style>
 </head>
 <%
-if ((Integer)request.getAttribute("error") == 1){
-	out.println("<script>alert('오류발생1!!');history.back();</script>");
-}
-
-//유저정보 획득
-String userName = LoginedUserInfo.name;
-String userPhone = LoginedUserInfo.phone;
-String userEmail = LoginedUserInfo.email;
-
-
-//share detail data
-Dto_Share share = (Dto_Share)request.getAttribute("DETAIL");
-//JSON 형식으로 달의 날자별 예약현황을 전송받음
-JSONArray thisMonthResData = (JSONArray)request.getAttribute("thisMonthResData");
-JSONArray nextMonthResData = (JSONArray)request.getAttribute("nextMonthResData");
-
-//예약가능 요일 (일~월, 가능0 불가능1)
-char[] possibleDay = (share.getDayLimit()).toCharArray();
-//예약가능 시간 (start time~end time) end - start = 이용가능시
-int startTime = share.getStartTime();
-int endTime = share.getEndTime();
-//총 이용 가능 시간
-int totalUsingTime = endTime - startTime;
-//시간당 가격
-int price = share.getPrice();
-
+	if ((Integer)request.getAttribute("error") == 1){
+		out.println("<script>alert('오류발생1!!');history.back();</script>");
+	}
+	
+	//유저정보 획득
+	String userName = LoginedUserInfo.name;
+	String userPhone = LoginedUserInfo.phone;
+	String userEmail = LoginedUserInfo.email;
+	
+	
+	//share detail data
+	Dto_Share share = (Dto_Share)request.getAttribute("DETAIL");
+	//JSON 형식으로 달의 날자별 예약현황을 전송받음
+	JSONArray thisMonthResData = (JSONArray)request.getAttribute("thisMonthResData");
+	JSONArray nextMonthResData = (JSONArray)request.getAttribute("nextMonthResData");
+	
+	//예약가능 요일 (일~월, 가능0 불가능1)
+	char[] possibleDay = (share.getDayLimit()).toCharArray();
+	//예약가능 시간 (start time~end time) end - start = 이용가능시
+	int startTime = share.getStartTime();
+	int endTime = share.getEndTime();
+	//총 이용 가능 시간
+	int totalUsingTime = endTime - startTime;
+	//시간당 가격
+	int price = share.getPrice();
 %>
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -53,14 +167,12 @@ int price = share.getPrice();
 	<c:forEach items="${nextMonthFullDateList}" var = "date">
 		nextMonthFullDateList.push(${date});
 	</c:forEach>
-
 	//---------------- calendar --------------------------
 	
 	//date객체 획득. 가변
 	var today = new Date();
 	//today 보조. 고정
 	var date = new Date();
-
 	//선택되있던 셀 객체 저장
 	var selectedCell;
 	//오늘에 해당하는 월
@@ -154,10 +266,9 @@ int price = share.getPrice();
 				noCount +=1;
 	        } else if (nowMonth > realMonth && i > realToDay) {
 				noCount +=1;
-	        } else if (possibleDay[etp] == 0){
+	        } else if (possibleDay[etp] == 1){
 				noCount +=1;
 	        }
-
 			if (noCount > 0){
 				cell.style.backgroundColor = "#E0E0E0";
 				cell.innerHTML = "<font color='#C6C6C6' >" + i + "</font>";
@@ -185,7 +296,7 @@ int price = share.getPrice();
 						selectedCell.bgColor = "#FFFFFF";
 					}
 					selectedCell = this;
-					this.bgColor = "#FF0000";
+					this.bgColor = "#fbedaa";
 					//time table 생성
 					timeTableMaker(today.getMonth() + 1,this.getAttribute('id'));
 				}
@@ -236,9 +347,7 @@ int price = share.getPrice();
 		console.log("다음달 이구요")
 		return 1;
 	}
-
 	// ---------------- time table --------------------------
-
 	var price = "<%=price%>";
 	var startTime = "<%=startTime%>";
 	var endTime = "<%=endTime%>";
@@ -246,7 +355,6 @@ int price = share.getPrice();
 	var selectedFirstTime = 24*1;
 	var selectedFinalTime = 0*1;
 	//예약시간표를 만들 table객체 획득
-
 	
 	function timeTableMaker(selectedMonth, selectedDate){
 		row = null
@@ -294,7 +402,7 @@ int price = share.getPrice();
 						return false;
 					}
 				}
-				this.bgColor = "#A8D6FF";
+				this.bgColor = "#fbedaa";
 				if (cellTime < selectedFirstTime) {
 					selectedFirstTime = cellTime
 				}
@@ -342,7 +450,6 @@ int price = share.getPrice();
 				}
 			}
 		}
-
 	}
 	//시간효 초기화
 	function tableinit(){
@@ -379,7 +486,6 @@ int price = share.getPrice();
 			nameForm.value = userName;
 			phoneForm.value = userPhone;
 			emailForm.value = userEmail;
-
 		} else {
 			nameForm.value = "";
 			phoneForm.value = "";
@@ -431,101 +537,110 @@ int price = share.getPrice();
 	
 </script>
 <body>
-	<form action="payment.four" method="post" name="paymentForm">
-	<table border="0">
-		<tr>
-			<td colspan="3" align="left"><h2>${DETAIL.title}</h2></td>
-		</tr>
-		<tr>
-			<td rowspan="3"> <img width="300" src="${DETAIL.filePath }"/> </td>
-			<td align="right"> 공간 유형 </td>
-			<td align="left"> ${DETAIL.category } </td>
-		</tr>
-		
-		<tr>
-			<td align="right">최대 인원</td>
-			<td align="left">${DETAIL.capacity}</td>
-		</tr>
-		
-		<tr>
-			<td align="right" style="vertical-align:cneter">주소</td>
-			<td align="left">${DETAIL.address1} <br> ${DETAIL.address2}</td>
-		</tr>
-	</table>
+<%@ include file="header.jsp" %>
+<div class="mainBox">
+	<div class="contentBox">
+		<div class="textLeft"><span style="color: #505050; font-size:30px; font-weight:700">예약하기</span>
+		<div class="underline"></div></div>
+		<form action="payment.four" method="post" name="paymentForm">
+		<table id="reservation_share" align="center">
+			<tr>
+				<td class="top" colspan="3" align="left">공간명 : ${DETAIL.title}</td>
+			</tr>
+			<tr>
+				<td rowspan="3">
+				<div class="share"><img class="sharePhoto" src="${DETAIL.filePath }"/></div></td>
+				<td class="title" align="left" style="border-top:1px solid #dcdcdc;"> 공간 유형 : </td>
+				<c:if test="${DETAIL.category == 1 }"><td class="content" align="left" style="border-top:1px solid #dcdcdc;">휴식</td></c:if>
+				<c:if test="${DETAIL.category == 2 }"><td class="content" align="left" style="border-top:1px solid #dcdcdc;">파티</td></c:if>
+				<c:if test="${DETAIL.category == 3 }"><td class="content" align="left" style="border-top:1px solid #dcdcdc;">공부</td></c:if>
+				<c:if test="${DETAIL.category == 4 }"><td class="content" align="left" style="border-top:1px solid #dcdcdc;">회의</td></c:if>
+			</tr>
+			<tr>
+				<td class="title" align="left">최대 인원 : </td>
+				<td class="content" align="left">1 ~ ${DETAIL.capacity}명</td>
+			</tr>
+			<tr>
+				<td class="title" align="left">주소 : </td>
+				<td class="content" align="left">${DETAIL.address1}<br>${DETAIL.address2}</td>
+			</tr>
+		</table>
+		<table id="reservation_user">
+				<tr>
+					<input type="hidden" name="productName" value="${DETAIL.title}"></input>
+					<input type="hidden" name="placeNo" value="${DETAIL.place_no}"></input>
+					<td class="top" align="left">예약자 정보</td>
+					<td class="content" align="right">
+					<input type="checkbox" onclick="checkboxEvent(this)">계정과 동일</td>
+				</tr>
+				<tr>
+					<td class="title" align="right">예약자</td>
+					<td class="content" align="left"> <input type="text" id="userName" name="userName" size="20"> </td>
+				</tr>
+				<tr>
+					<td class="title" align="right">전화번호</td>
+					<td class="content" align="left"> <input type="text" id="userPhone" name="userPhone" size="20"> </td>
+				</tr>
+				<tr>
+					<td class="title" align="right">이메일</td>
+					<td class="content" align="left"> <input type="text" id="userEmail" name="userEmail" size="20"> </td>
+				</tr>
+				<tr>
+					<td class="title" align="right">인원수</td>
+					<td class="content" align="left"> <input type="text" id="capacity" name="capacity" size="20"> </td>
+				</tr>
+		</table>
 	
-	<table>
+		<table id="reservation_time">
 			<tr>
-				<input type="hidden" name="productName" value="${DETAIL.title}"></input>
-				<input type="hidden" name="placeNo" value="${DETAIL.place_no}"></input>
-				<td align="left"><h2>예약자 정보</h2></td>
-				<td align="right"> <input type="checkbox" onclick="checkboxEvent(this)">계정과 동일 </td>
+				<td class="top" align="left">시간선택</td>
+				<td class="top" align="right"><button class="btnTime" type="button" onclick="tableinit()">초기화</button></td>
 			</tr>
 			<tr>
-				<td align="right">예약자</td>
-				<td align="left"> <input type="text" id="userName" name="userName" size="20"> </td>
+				<td>
+					<table id="calendar">
+						<tr>
+							<td align="center"><label onclick="prevCalendar()"> ◀ </label></td>
+							<td colspan="5" align="center" id="calendarTitle">yyyy년 m월</td>
+							<td align="center"><label onclick="nextCalendar()"> ▶ </label></td>
+						</tr>
+						<tr>
+							<td align="center"><font color ="#F79DC2">일</font></td>
+							<td align="center">월</td>
+							<td align="center">화</td>
+							<td align="center">수</td>
+							<td align="center">목</td>
+							<td align="center">금</td>
+							<td align="center"><font color ="skyblue">토</font></td>
+						</tr>
+					</table>
+				</td>
+				<td>
+					<table id = "timeTable">	</table>
+				</td>
+			</tr>
+			<tr> 
+				<td class="top" align="left" colspan="2">예약일시</td>
 			</tr>
 			<tr>
-				<td align="right">전화번호</td>
-				<td align="left"> <input type="text" id="userPhone" name="userPhone" size="20"> </td>
+				<td class="content" colspan="2" align="left"><input id="selectedDate" name="selectedDate" value="" readonly="readonly"></input>
+				<input id="selectedTime" name="selectedTime" value="" readonly="readonly"></input></td>
 			</tr>
 			<tr>
-				<td align="right">이메일</td>
-				<td align="left"> <input type="text" id="userEmail" name="userEmail" size="20"> </td>
+				<td class="top" align="left">결제정보</td>
 			</tr>
 			<tr>
-				<td align="right">인원수</td>
-				<td align="left"> <input type="text" id="capacity" name="capacity" size="20"> </td>
+				<td class="content" align="left" colspan="2"><input id="totalPrice" name="totalPrice" value="" readonly="readonly"></input></td>
 			</tr>
-	</table>
-
-	<table>
-		<tr>
-			<td><h2>시간선택</h2><button type="button" onclick="tableinit()">초기화</button></td>
-		</tr>
-		<tr>
-			<td>
-				<table id="calendar" border="1">
-					<tr>
-						<td align="center"><label onclick="prevCalendar()"> ◀ </label></td>
-						<td colspan="5" align="center" id="calendarTitle">yyyy년 m월</td>
-						<td align="center"><label onclick="nextCalendar()"> ▶ </label></td>
-					</tr>
-					<tr>
-						<td align="center"><font color ="#F79DC2">일</td>
-						<td align="center">월</td>
-						<td align="center">화</td>
-						<td align="center">수</td>
-						<td align="center">목</td>
-						<td align="center">금</td>
-						<td align="center"><font color ="skyblue">토</td>
-					</tr>
-				</table>
-			</td>
-			<td>
-				<table id = "timeTable" border="1">	</table>
-			</td>
-		</tr>
-		
-		<tr> 
-			<td>
-				<h2>예약일시</h2>
-				<input id="selectedDate" name="selectedDate" value="" readonly="readonly"></input>
-				<input id="selectedTime" name="selectedTime" value="" readonly="readonly"></input>
-			</td>
-		</tr>
-		
-		<tr>
-			<td><h2>결제정보</h2></td>
-		</tr>
-		
-		<tr>
-			<td><input id="totalPrice" name="totalPrice" value="" readonly="readonly"></input></td>
-		</tr>
-		<tr>
-			<td><input type="button" value="결제하기" onclick="submitRes()"></td>
-		</tr>
-	</table>
-	</form>
+			<tr>
+				<td class="content" align="left" colspan="2">
+				<input id="btn_submit" type="button" value="결제하기" onclick="submitRes()"></td>
+			<tr>
+		</table>
+		</form>
+	</div>
+</div>
 <script type="text/javascript">buildCalendar();</script>
+<%@ include file="footer.jsp" %>
 </body>
 </html>

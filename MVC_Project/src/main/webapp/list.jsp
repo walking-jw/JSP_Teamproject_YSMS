@@ -32,7 +32,7 @@
 				<td><a href="content.four?no=${dto.no }">${dto.title }</a></td>
 				<td>${dto.date }</td>
 				<td colspan="4" align="right"><a href="detail.four?no=${dto.no}">자세히보기</a></td>
-				<td><button type="button" class="navyBtn" onClick="location.href='host_qna.four?place_no=${dto.place_no}'">이 방에 대해 받은 질문보기</button></td>
+				<td align="center"><button type="button" class="navyBtn" onClick="location.href='host_qna.four?place_no=${dto.place_no}'">질문보기</button></td>
 			</tr>
 		</c:forEach>
 			<tr>

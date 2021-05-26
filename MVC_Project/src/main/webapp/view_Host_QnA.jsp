@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
-<title>(공간이름) 문의 목록 </title>
+<title>문의 목록 </title>
 <style>
 
         #hostQna { border-collapse:collapse; width:800px}
@@ -17,7 +17,6 @@
         #hostQna td { background:#f0f0f0 none repeat-x scroll center left; color:#000; padding:20px 15px; }
         #hostQna tr.odd td { background:#fff url(row_bkg.png) repeat-x scroll center left; cursor:pointer; }
 </style>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 		$(document).ready(function(){
@@ -50,7 +49,7 @@
 <%@ include file="header.jsp" %>
 
 
-	<h3 style="text-align: center;">(공간이름) 문의 목록</h3>
+	<h3 style="text-align: center;">문의 목록</h3>
 	<table class="table" id="hostQna">
 		<tr>
 			<th></th>
