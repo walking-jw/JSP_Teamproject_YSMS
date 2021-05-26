@@ -71,18 +71,13 @@
 		open(url, "confirm",
 				"roolbar=no, location=no,menubar=no,scrollbars=no,resizable=no,width=450,height=230");
  	}
-
 	function hiddenbtn() {
-		
-		var host = document.getElementById("host").value;
-		var loginedId = document.getElementById("loginedId").value;
-		var btn = document.getElementById("write");
-		
-		if(host == loginedId){
-			btn.style.display = "none";
-		}	
-	}
-		
+	var target = document.getElementById("target").value;
+	var loginedId = document.getElementById("loginedId").value;
+	var btn = document.getElementById("write");
+	if(target == loginedId){
+		btn.style.display = "none";
+	}	
 }
 </script>
 <body>
@@ -96,7 +91,6 @@
 			</th>
 			<th align="right">
 				<button id="write" type="button" style="font-weight:800;" onclick="writeQna();">작성하기</button>
-				<input type="hidden" id="host" value="${host }">
 				<input type="hidden" id="loginedId" value="${loginedUserID }">
 				<input type="hidden" id="place_no" value="${placeNo }">
 			</th>
@@ -117,7 +111,7 @@
 			<td align="right"><span style="font-size:13px;">${qnaDto.qnaQ_updateDate }</span></td>
 		</tr>
 		<tr>
-			<td colspan="2" align="left"><pre>${qnaDto.qnaContent }</pre></td>
+			<td colspan="2"><textarea readonly="readonly" disabled="disabled">${qnaDto.qnaContent }</textarea></td>
 		</tr>
 		<tr>
 		</tr>
@@ -133,7 +127,7 @@
 			<td align="right"><span style="font-size:13px;">${qnaDto.qnaA_updateDate }</span></td>
 		</tr>
 		<tr>
-			<td colspan="2" align="left"><pre>${qnaDto.qnaAnswer }</pre></td>
+			<td colspan="2"><textarea readonly="readonly" disabled="disabled">${qnaDto.qnaAnswer }</textarea></td>
 		</tr>
 		<tr>
 		</tr>

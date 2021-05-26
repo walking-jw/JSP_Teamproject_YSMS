@@ -12,7 +12,7 @@
 	/* footer 배경색 적용 CSS */
 	.container { 
 		background-color: #ACE2F9;
-		margin-top : 150px;
+		/* margin-top : 150px; */
 	}
 	/* footer 로고 이미지 CSS */
 	.footer_logo img {

@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/spaceDetailView_QnaReview.css" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>
 	*{
 		font-family: 'Nanum Gothic', sans-serif;
@@ -60,7 +61,7 @@
 </style>
 <title>${DETAIL.title} : 너의 공간 나의 공간 your space my space </title>
 </head>
-<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.js"> 
+<script type="text/javascript"> 
 	function calcQnaHeight(){
 	 //find the height of the internal page
 	 var the_height=
@@ -83,7 +84,6 @@
 		 //document.getElementById('the_iframe').scrolling = "no";
 		 document.getElementById('review_iframe').style.overflow = "hidden";
 		}
-	//-----------------------
 </script>
 <body>
 <%@ include file="header.jsp" %>
@@ -116,6 +116,11 @@
 					<td class="td_content">${DETAIL.endTime }시</td>
 				</tr>
 			</table>
+					<!-- 예약하기 페이지로 이동 -->
+			<form action="reservation.four" method="post">
+			<input type="hidden" name="sNo" value="${sNo}">
+			<!-- <input type="submit" value="예약하기"> -->
+			</form>
 		</div>
 	</div>
 </div>
@@ -161,11 +166,10 @@
 	</div>	
 </div>
 <%// 리뷰와 큐앤에이 %>
-	<div style="text-align: center;">
+	<div style="text-align: center; margin-bottom:50px;">
 	<iframe src="qna.four?place_no=${DETAIL.place_no }" id="qna_iframe" onload="calcQnaHeight();" name="" title="" frameborder="0" scrolling="no"></iframe>
 	<iframe src="review.four?place_no=${DETAIL.place_no }" id="review_iframe" onload="calcReviewHeight();" frameborder="0" scrolling="no"></iframe>
 	</div>
-	<br><br>
 		<!-- 예약하기 페이지로 이동 -->
 	<form action="reservation.four" method="post">
 	<input type="hidden" name="sNo" value="${sNo}">
@@ -205,8 +209,7 @@
 	<div id="floatMenu" style="position: absolute; " >	
       <button type="submit" class="button" >예약하기</button>  
   </div>
-	</form>
-	<br><br>
+	</form> 
 	<%@ include file="footer.jsp" %>
 </body>
 </html>

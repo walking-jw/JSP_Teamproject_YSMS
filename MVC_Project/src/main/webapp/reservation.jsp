@@ -268,7 +268,7 @@
 				noCount +=1;
 	        } else if (nowMonth > realMonth && i > realToDay) {
 				noCount +=1;
-	        } else if (possibleDay[etp] == 1){
+	        } else if (possibleDay[etp] == 0){
 				noCount +=1;
 	        }
 

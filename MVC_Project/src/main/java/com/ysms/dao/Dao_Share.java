@@ -221,6 +221,7 @@ public class Dao_Share {
 							  filePath, dayLimit, place_no);
 				
 				System.out.println("  - share no : " + no);
+				System.out.println("  - place no : " + place_no);
 				System.out.println("  - user_id : " + user_id);
 				System.out.println(" Data load success : detail ");
 			}
