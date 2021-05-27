@@ -45,7 +45,7 @@
  	}
 	
 	/* 인기 지역 CSS */ 
- 	.hotPlace{
+ 	.hotPlace {
  		text-align: center;;
 		display: inline-block;
 		width: 978px; 
@@ -53,17 +53,16 @@
  	}
  	
  	/* 인기 지역-제목 CSS */ 
- 	.hotPlace h1{
+ 	.hotPlace h1 {
  		margin-top: 150px;
  		font-size: 250%;
  		margin-bottom: 40px;
  	}
  	
  	/* 인기 지역-이미지 CSS */ 
-  	.hotPlace a img{
+  	.hotPlace a img {
  		width: 230px;
  		margin: 30px;
- 
  	}
  	 
  	/* 인기 지역-지역 이름 CSS */ 
@@ -77,24 +76,24 @@
  	 }
 
 	/* 추천 공간 CSS */
-	.recommendationSpace{
+	.recommendationSpace {
 		text-align: center;
 		display: inline-block;
 		width: 978px; 
 		background-color: #fff;
 		margin-top: 50px;
-		margin-bottom: 500px;
+		margin-bottom: 200px;
 	}
 	
 	/* 추천 공간-제목 CSS */ 
- 	.recommendationSpace h1{
+ 	.recommendationSpace h1 {
  		margin-top: 150px;
  		font-size: 250%;
  		margin-bottom: 40px;
  	}
  	
  	/* 추천 공간-이미지 CSS */
-  	.recommendationSpace a img{
+  	.recommendationSpace a img {
  		width: 200px;
  		margin: 20px;
 /*  		border: 1px solid;  */
@@ -110,13 +109,28 @@
  	 	margin: 0 10px 0 10px;
  	 }
 
+	/* 이용 후기 슬라이더 CSS */
+	.review-slider {
+		width: 900px;
+		height: 400px;
+		overflow: hidden; 
+		text-align: center;
+		margin-bottom: 150px;
+	}
+	
+	/* 이용 후기 슬라이더-이미지 CSS */
+ 	.review-slider ul li img {
+		width: 900px;
+		height: 400px;
+	}
+	
 </style>
 
 <body>
 	<!-- header.jsp 불러오기 -->
 	<%@ include file="header.jsp" %>
 	
-	<!-- 슬라이더 -->
+	<!-- 광고 슬라이더 -->
 	<div class="my-slider uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slideshow="autoplay:true; autoplay-interval=1000;">
 	    <ul class="uk-slideshow-items">
 	        <li>
@@ -173,6 +187,25 @@
 					<td><a href="SearchPlaceCommand.four?categorySpace=4&location=구">Meeting</a></td>
 				</tr>
 			</table>
+		</div>
+	</div>
+	
+	<!-- 이용 후기 슬라이더 -->
+	<div class="mainBox">
+		<div class="review-slider uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slideshow="autoplay:true; autoplay-interval=1000;">
+		    <ul class="uk-slideshow-items">
+		        <li>
+		        	<img alt="이용 후기 1" src="img/ysms_review_slide_one.jpg">
+		        </li>
+		        <li>
+		        	<img alt="이용 후기 2" src="img/ysms_review_slide_two.jpg">
+		        </li>
+		        <li>
+		        	<img alt="이용 후기 3" src="img/ysms_review_slide_three.jpg">
+		        </li>
+		    </ul>
+		    <a class="btn uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
+		    <a class="btn uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
 		</div>
 	</div>
 	

@@ -30,6 +30,19 @@ public class Dto_SearchPlace  {
 	}
 
 
+	public Dto_SearchPlace(String filePath, String category, String title, String address1, String address2, int price,
+			int no) {
+		super();
+		this.filePath = filePath;
+		this.category = category;
+		this.title = title;
+		this.address1 = address1;
+		this.address2 = address2;
+		this.price = price;
+		this.no = no;
+	}
+
+
 	public String getFilePath() {
 		return filePath;
 	}

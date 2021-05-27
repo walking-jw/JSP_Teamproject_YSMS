@@ -31,26 +31,30 @@ table.table {
   /*border-collapse: collapse;*/
   text-align: left;
   line-height: 1.5;
-  margin : 20px 10px;
+/*   margin : 20px 10px; */
   font-size:14px;
   /* border: 1px solid #fff; */
 }
-table.table th {
+table.table th  {
   width: 70px;
   padding: 10px;
   font-weight: bold; 
   text-align:center;
-  vertical-align: top;
+/*   vertical-align: center; */
  /*  border: 1px solid #fff; */
   background: #fbedaa;
 }
-table.table td {
-  width: 250px;
+table.table td{
+/*   width: 250px; */
   padding: 10px;
-  vertical-align: top;
+/*   vertical-align: center; */
 /* border: 1px solid #fff; */
-} 
-
+}
+table.table td.photo{
+	padding:0;
+	padding-right:10px;
+	width:210px;
+}
 
 /* link sign up , ID & PW CSS */
 a[href] {
@@ -63,3 +67,15 @@ a:hover {
   color: #90c6dc;
   text-decoration: underline;
 }
+
+ .shareList {
+ 	width: 210px;
+	height: 120px;
+ 	overflow: hidden;
+ 	border:1px solid #f0f0f0;
+} 
+ .shareListPhoto {
+ 	width: 210px;
+ 	height: 120px;
+ 	object-fit: cover;
+} 

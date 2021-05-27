@@ -178,6 +178,118 @@ public class Dao_SearchPlace {
 		return count;
 	}
 	
+	
+	
+	/*
+	 * 21.05.27 hyokyeong
+	 * 공간 목록 클릭시 공간 리스트 전부 띄우기 
+	 */
+	public ArrayList<Dto_SearchPlace> shareList(int requestPage, int numOfTuplesPerPage){ // 검색
+		ArrayList<Dto_SearchPlace> dtos = new ArrayList<Dto_SearchPlace>();
+		Connection connection = null;// java.sql
+		PreparedStatement preparedStatement = null; // java.sql
+		ResultSet resultSet = null; // java.sql	
+		
+		try {
+			connection = dataSource.getConnection(); // 연결
+			
+			String query1 = "SELECT DISTINCT s.no, s.filePath, p.category, s.title, p.address1, p.address2, s.price ";
+			String query2 = "FROM share s, place  p ";
+			String query3 = "WHERE p.no = s.place_no and p.removeDate is null ";
+			String query4 = "ORDER BY s.no DESC LIMIT ?, ? ";
+			
+			int offset = requestPage-1;
+			
+			preparedStatement = connection.prepareStatement(query1+query2+query3+query4); // 쿼리문 연결
+			
+			// 0을 나누면 에러가 발생하므로 예외처리
+			if(offset == 0) {
+				preparedStatement.setInt(1, offset);
+			}else {
+				preparedStatement.setInt(1, offset * numOfTuplesPerPage);
+			}
+			preparedStatement.setInt(2, numOfTuplesPerPage);
+			
+			resultSet = preparedStatement.executeQuery(); // 쿼리문 실행
+			
+			while(resultSet.next()) {
+				
+				String filePath = resultSet.getString("s.filePath"); //이미지파일 불러오기
+				String category = resultSet.getString("p.category");//category 숫자값 -> 문자로 변환
+				int no = resultSet.getInt("s.no");
+				String title = resultSet.getString("s.title");
+				String address1 = resultSet.getString("p.address1");
+				String address2 = resultSet.getString("p.address2");
+				int price = resultSet.getInt("s.price");
+				
+				// category -----
+				switch(category) {
+				case "1" :
+					category = "휴식";
+					break;
+				case "2" :
+					category = "파티";
+					break;
+				case "3" : 
+					category = "공부";
+					break;
+				case "4" :
+					category = "회의";
+					break;
+				default : 
+					break;
+					
+				}
+				Dto_SearchPlace dto = new Dto_SearchPlace(filePath, category, title, address1, address2, price, no); // ArrayList 생성
+				dtos.add(dto); // ArrayList에 저장(메모리)
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(resultSet!=null) resultSet.close(); // 실행이 잘되었다면, 실행종료
+				if(preparedStatement!=null) preparedStatement.close(); // 실행이 잘되었다면, 실행종료
+				if(connection != null) connection.close(); //실행이 잘되었다면, 실행종료
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		return dtos;
+	}
+	
+	//share list tuple 수 세기
+	public int countShareTuple() {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		int count = 0;
+		
+		String query = "SELECT DISTINCT count(s.title) FROM share s, place  p WHERE p.no = s.place_no and p.removeDate is null" ;
+
+		try {
+			connection = dataSource.getConnection();
+			preparedStatement = connection.prepareStatement(query);
+			resultSet = preparedStatement.executeQuery();
+			if(resultSet.next()) {
+				count = resultSet.getInt(1);
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(resultSet != null) resultSet.close();
+				if(preparedStatement != null) preparedStatement.close();
+				if(connection != null) connection.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return count;
+	}
+	
 		
 	
 	
