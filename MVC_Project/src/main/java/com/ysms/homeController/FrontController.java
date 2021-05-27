@@ -52,6 +52,7 @@ import com.ysms.command.MyinfoReviewCommand;
 import com.ysms.command.PaymentCommand;
 import com.ysms.command.PaymentResultCheckCommand;
 import com.ysms.command.PaymentSubmitCommand;
+import com.ysms.command.PlaceListAllCommand;
 import com.ysms.command.QnACommand;
 import com.ysms.command.ReservationCommand;
 import com.ysms.command.ReviewCommand;
@@ -191,7 +192,9 @@ public class FrontController extends HttpServlet {
 				// PlaceSearchPage 보여주기
 			case ("/SearchPlacePage.four"):
 				System.out.println("PlaceSearchPage.jsp 출력시도");
-				viewPage = "PlaceSearchPage.jsp"; // 화면 출력
+				command = new PlaceListAllCommand(); 
+				command.execute(request, response); 
+				viewPage = "PlaceSearchPage.jsp"; 
 				break;
 			
 			// PlaceResultPage 보여주기
