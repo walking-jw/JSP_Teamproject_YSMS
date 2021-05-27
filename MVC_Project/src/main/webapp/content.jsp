@@ -7,6 +7,7 @@
 <link href="css/content.css" rel="stylesheet" type="text/css">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/spaceDetailView_QnaReview.css" type="text/css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -49,6 +50,9 @@ function dateHandler(checkBox){
 </script>
 <body>
 	<%@ include file="header.jsp" %>
+	
+	<%@ include file="reservationCheck.jsp" %>
+	
 	<div class="mainBox">
 	<div class="contentBox">
 	<h3 style="text-align: center;">공간 나눔 목록</h3>
@@ -108,8 +112,7 @@ function dateHandler(checkBox){
 			<tr>
 				<th>예약가능 요일</th>
 				<td>
-				<input type="hidden" name="dayLimit" size="15" value="${DETAIL.dayLimit }">
-					<input type="hidden" id="dayLimit" name="dayLimit" value="" size="50">
+					<input type="hidden" id="dayLimit" name="dayLimit" value="${DETAIL.dayLimit }" size="50">
 					<input type="checkbox" name = "checkBox" value="1000000" onclick="dateHandler(this)" checked="checked">일
 					<input type="checkbox" name = "checkBox" value="100000" onclick="dateHandler(this)" checked="checked">월
 					<input type="checkbox" name = "checkBox" value="10000" onclick="dateHandler(this)" checked="checked">화

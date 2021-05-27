@@ -15,6 +15,7 @@ import javax.sql.DataSource;
 import com.ysms.common.LoginedUserInfo;
 import com.ysms.dto.Dto_Payment;
 import com.ysms.dto.Dto_Reservation_rental;
+import com.ysms.dto.Dto_Reservation_rentalDetail;
 
 public class Dao_Reservation {
 	DataSource dataSource;
@@ -30,6 +31,70 @@ public class Dao_Reservation {
 			System.out.println("Database connection failed");
 			e.printStackTrace();
 		}
+	}
+	public ArrayList<Dto_Reservation_rentalDetail> refineSharesDetail(int place_no) {
+
+		String query1 = "SELECT no, resName, resEmail, resPhone, resCapacity, price, checkInDate, startTime, endTime ";
+		String query2 = "FROM (SELECT *, TIMESTAMPDIFF(DAY, now(), checkInDate) timeDiff FROM rental WHERE place_no = ? AND cancellationDate IS NULL) r ";
+      	String query3 = "WHERE r.timeDiff BETWEEN -32 AND 32 ";
+      	String query4 = "ORDER BY checkInDate ASC, startTime ASC";
+      	String query = query1 + query2 + query3 + query4;
+      	
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+
+		ArrayList<Dto_Reservation_rentalDetail> dtos = new ArrayList<Dto_Reservation_rentalDetail>();
+
+		try {
+			conn = dataSource.getConnection();
+			psmt = conn.prepareStatement(query);
+			psmt.setInt(1, place_no);
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				int no = rs.getInt("no");
+				String resName = rs.getString("resName");
+				String resEmail = rs.getString("resEmail");
+				String resPhone = rs.getString("resPhone");
+				int resCapacity = rs.getInt("resCapacity");
+				int price = rs.getInt("price");
+				Timestamp checkInDate = rs.getTimestamp("checkInDate");
+				System.out.println("checkInDate : " + checkInDate);
+				int startTime = rs.getInt("startTime");
+				int endTime = rs.getInt("endTime");
+
+				Calendar calendar = Calendar.getInstance();
+				calendar.setTime(checkInDate);
+				
+				int month = calendar.get(Calendar.MONTH) + 1;
+				int date = calendar.get(Calendar.DATE);
+				int usingTime = endTime - startTime;
+				
+				Dto_Reservation_rentalDetail dto = new Dto_Reservation_rentalDetail(no, resName, resEmail, resPhone, resCapacity, price, month, date, startTime, usingTime);
+				System.out.println(month + " / " + date + " : " + startTime + " + " + usingTime);
+				dtos.add(dto);
+			}
+			
+			System.out.println("refineShares success");
+		} catch (Exception e) {
+			System.out.println("refineShares fail");
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (psmt != null)
+					psmt.close();
+				if (conn != null)
+					conn.close();
+				System.out.println("< rs, psmt, conn close success>");
+			} catch (Exception e) {
+				System.out.println("< rs, psmt, conn close Fail>");
+			}
+		}
+		
+		return dtos;
 	}
 	
 	public ArrayList<Dto_Reservation_rental> refineShares(int place_no) {
