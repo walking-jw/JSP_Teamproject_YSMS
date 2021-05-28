@@ -119,7 +119,7 @@ function goToUser(userNo){
 			<table class="table2" style="margin-left: auto; margin-right: auto;">
 				<tr>
 					<td align="right">
-						<a href="write_space.four"><button type="button" class="btnWrite" onclick="kickBack()"> 강제탈퇴 </button></a>
+						<a href="admin_managingUser.four"><button type="button" class="btnWrite" onclick="kickBack()"> 강제탈퇴 </button></a>
 					</td>
 				</tr>
 			</table>

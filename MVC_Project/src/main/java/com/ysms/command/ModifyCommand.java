@@ -32,6 +32,7 @@ public class ModifyCommand implements Command {
 		int fileSize = 1024 * 1024 * 3;
 		ServletContext context = request.getServletContext();
 		String uploadPath = context.getRealPath("/save");
+		System.out.println(uploadPath);
 
 		File folder = new File(uploadPath);
 		// 해당 디렉토리가 없을경우 디렉토리를 생성합니다.

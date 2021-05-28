@@ -18,6 +18,8 @@ public class LoginCommand implements Command {
 		Dao_Login dao = new Dao_Login();
 		String loginedUserID = dao.tryToLogin(userID, userPW);
 		
+		
+		
 		HttpSession session = request.getSession();
 		session.setAttribute("loginedUserID", loginedUserID);
 		//로그인을 실행했다는 일종의 토큰

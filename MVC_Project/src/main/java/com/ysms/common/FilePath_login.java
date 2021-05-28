@@ -25,6 +25,7 @@ public class FilePath_login {
 	
 	public MultipartRequest getMultipartRequest(HttpServletRequest request) {
 		String uploadPath = getRealPath(request);
+		
 		System.out.println("getMultipartRequest : " + uploadPath);
 		MultipartRequest multi = null;
 		

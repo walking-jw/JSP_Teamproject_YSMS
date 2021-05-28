@@ -22,7 +22,7 @@ public class ListCommand implements Command {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		// 사용자가 요청한 페이지 번호 초기값은 가장 최신글을 보여주는 1
-			
+		System.out.println("@@경로 : " + request.getSession().getServletContext().getRealPath("/"));
 			String user_id = LoginedUserInfo.id;
 			int requestPage = 1;
 			Dao_Share dao = new Dao_Share();

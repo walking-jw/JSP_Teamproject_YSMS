@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +10,6 @@
 <meta charset="UTF-8">
 <title>${hostQnaShareTitle }의 문의 목록 </title>
 <style>
-
         #hostQna { border-collapse:collapse; width:800px}
         #hostQna th { background:#c0c0c0 url(header_bkg.png) repeat-x scroll center left; color:#fff; padding:7px 7px; text-align:center;}
         #hostQna td { background:#f0f0f0 none repeat-x scroll center left; color:#000; padding:20px 15px; }
@@ -20,11 +18,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 		$(document).ready(function(){
-	
 	    $("#hostQna tr:odd").addClass("odd");
 	    $("#hostQna tr:not(.odd)").hide(); 
 	    $("#hostQna tr:first-child").show(); //열머리글 보여주기
-	
 	    $("#hostQna tr.odd").click(function(){
 	        $(this).next("tr").toggle();
 	        $(this).find(".arrow").toggleClass("up");
@@ -33,21 +29,17 @@
 </script>
 </head>
 <script type="text/javascript">
-
 	function modifyQna(window) {
 		open(window, "confirm",
 		"roolbar=no,location=no,menubar=no,scrollbars=no,resizable=no,width=450,height=400");
 	}
-
 	function openNewWindow(window) {
 		open(window, "confirm",
 		"roolbar=no,location=no,menubar=no,scrollbars=no,resizable=no,width=300,height=150");
 	}
-	
 </script>
 <body>
 <%@ include file="header.jsp" %>
-
 	<h3 style="text-align: center;">${hostQnaShareTitle }의 문의 목록</h3>
 	<table class="table" id="hostQna">
 		<tr>
@@ -57,7 +49,6 @@
 			<th>문의 일자</th>
 			<th>답변 여부</th>
 		</tr>
-		
 		<c:choose>
 		<c:when test="${!empty hostQnaList }">
 		<c:forEach items="${hostQnaList }" var="hostQnaDto">
@@ -74,7 +65,6 @@
 			<td colspan = "2">
 				문의내용 <br>
 				${hostQnaDto.qnaContent }<br><br>
-				
 				호스트답변<br>
 				${hostQnaDto.qnaAnswer }<br>
 				${hostQnaDto.qnaA_updateDate}
@@ -110,7 +100,6 @@
 			</c:forEach></td>
 		</tr> 
 	</table>
-
 <%@ include file="footer.jsp" %>
 </body>
 </html>
