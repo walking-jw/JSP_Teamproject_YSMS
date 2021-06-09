@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+
 <%@ include file="header.jsp" %>
 <div class="mainBox">
 <div class="contentBox">
@@ -20,11 +21,11 @@
 		
 			<tr>
 				<th>제목</th>
-				<td align="left"><input type="text" name="title" size="30"></td>
+				<td align="left"><input type="text" name="title" size="100"></td>
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td><textarea rows="10" cols="50" name="content"></textarea></td>
+				<td><textarea name="content" readonly="readonly" style="height:500px;" ></textarea></td>
 			</tr>
 	</table>
 	<table class="table2" style="margin-left: auto; margin-right: auto;">

@@ -268,7 +268,7 @@
 				noCount +=1;
 	        } else if (nowMonth > realMonth && i > realToDay) {
 				noCount +=1;
-	        } else if (possibleDay[etp] == 0){
+	        } else if (possibleDay[etp] == 1){
 				noCount +=1;
 	        }
 
@@ -548,7 +548,7 @@
 <%@ include file="header.jsp" %>
 <div class="mainBox">
 	<div class="contentBox">
-		<div class="textLeft"><span style="color: #505050; font-size:30px; font-weight:700">예약하기</span>
+		<div class="textLeft"><span style="color: #505050; font-size:40px; font-weight:700">예약하기</span>
 		<div class="underline"></div></div>
 		<form action="payment.four" method="post" name="paymentForm">
 		<table id="reservation_share" align="center">
@@ -631,14 +631,18 @@
 				<td class="top" align="left" colspan="2">예약일시</td>
 			</tr>
 			<tr>
-				<td class="content" colspan="2" align="left"><input id="selectedDate" name="selectedDate" value="" readonly="readonly"></input>
-				<input id="selectedTime" name="selectedTime" value="" readonly="readonly"></input></td>
+				<td class="content" colspan="2" align="left">
+					<input id="selectedDate" style="border:none; width:100px"  name="selectedDate" value="" readonly="readonly" ></input>
+					<input id="selectedTime" style="border:none"  name="selectedTime" value="" readonly="readonly"></input>
+				</td>
 			</tr>
 			<tr>
 				<td class="top" align="left">결제정보</td>
 			</tr>
 			<tr>
-				<td class="content" align="left" colspan="2"><input id="totalPrice" name="totalPrice" value="" readonly="readonly"></input></td>
+				<td class="content" align="left" colspan="2">
+					<input id="totalPrice"  style="border:none; text-align:right; width:100px" name="totalPrice" value="" readonly="readonly">원</input>
+				</td>
 			</tr>
 			<tr>
 				<td class="content" align="left" colspan="2">

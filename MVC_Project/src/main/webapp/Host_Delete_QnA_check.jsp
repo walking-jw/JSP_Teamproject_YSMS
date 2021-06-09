@@ -5,6 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Delete QnA Answer</title>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/Compeleted.css" type="text/css">
 </head>
 <%
 	request.setCharacterEncoding("utf-8");
@@ -13,15 +16,15 @@
 %>
 
 <body>
-<table>
+<table id="qnaDeleteChk" align="center">
 	<form action="host_qna_delete.four" method="post">
 	<input type="hidden" name="qna_no" value="${qnaNo }">
 	<tr>
-		<td colspan="2">정말 삭제하시겠습니까?</td>
+		<td colspan="2" align="center" valign="bottom">정말 삭제하시겠습니까?</td>
 	</tr>
 	<tr>
-		<td><input type="submit" value="YES"></td></form>
-		<td><input type="button" value="NO" onclick="window.close();"></td>
+		<td align="center"><input type="submit" value="YES"></td></form>
+		<td align="center"><input type="button" value="NO" onclick="window.close();"></td>
 	</tr>
 </table>
 </body>

@@ -4,7 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-	<link rel="stylesheet" href="css/spaceDetailView_QnaReview.css" type="text/css">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/review.css" type="text/css">
 <title>리뷰 작성 : 너의 공간 나의 공간 Your space My space</title>
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -35,14 +37,17 @@
 
 	<form name="writeReview" action="review_write.four" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="rentalNo" value="${rentalNo }">
-	<table>
+	<table id="writeReview">
 		<tr>		
-			<td><h3>리뷰 쓰기</h3></td>
-			<td></td>
+			<th align="left">리뷰 쓰기</th>
+			<th align="right">
+			<input type="button" value="닫기" onclick="window.close();">
+			<input type="reset" value="지우기" class="btn-delete">
+			<input type="button" value="등록" onclick="checkReviewContent();"></th>	
 		</tr>
 		<tr>
-			<td>공간평점 : </td>
-			<td><select name="reviewScore">
+			<td class="title" align="center">공간평점</td>
+			<td class="title"><select name="reviewScore">
 				<option value="">공간점수</option>
 				<option value="5">5</option>
 				<option value="4">4</option>
@@ -53,26 +58,20 @@
 			</td>
 		</tr>
 		<tr>
-			<td>첨부파일</td>
-			<td>
+			<td class="title" align="center">첨부파일</td>
+			<td class="title">
 			<input type="file" name="reviewImg" id="reviewImg" accept="image/*">
 			 </td>
 		</tr> 
  		<tr>
-   			<td colspan="2">
+   			<td colspan="2" class="photo">
 			    <div id="preview"></div>
    			</td>
    		</tr>
 		<tr>
 			<td colspan="2">
 			<textarea rows="5" cols="50" name="reviewContent" placeholder="나눔 받은 공간은 어떠셨나요? 당신의 감상을 들려주세요."></textarea></td>
-		</tr>
-		<tr>
-			<td clospan="2">
-			<input type="button" value="닫기" onclick="window.close();">
-			<input type="reset" value="지우기" class="btn-delete">
-			<input type="button" value="등록" onclick="checkReviewContent();"></td>
-		</tr>				
+		</tr>			
 	</table>	
 	</form>
 </body>
@@ -83,7 +82,7 @@ function readInputFile(input) {
     if(input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function (e) {
-            $('#preview').html("<img src="+ e.target.result +" width='300'>");
+            $('#preview').html("<img class='reviewPhoto' src="+ e.target.result +">");
         }
         reader.readAsDataURL(input.files[0]);
     }

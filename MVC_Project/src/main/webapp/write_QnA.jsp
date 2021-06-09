@@ -4,6 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/QnA.css" type="text/css">
 <title>문의하기 : 너의 공간 나의 공간 Your space My space</title>
 </head>
 <script type="text/javascript">
@@ -30,19 +33,17 @@
 	<form name="writeQna" action="qna_write.four" method="post">
 	
 		<input type="hidden" name="place_no" value="${place_no }">
-	<table>
+	<table id = "writeQna" align="center">
 		<tr>		
-			<td><h3>질문내용</h3></td>
-			<td></td>
+			<th align="left">문의 내용</th>
+			<th align="right">
+			<input type="reset" value="지우기">
+			<input type="button" value="등록" onclick="checkQnaContent();">
+			</th>
 		</tr>
 		<tr>
-			<td colspan="2"><textarea rows="5" cols="50" name="qnaContent"></textarea></td>
-		</tr>
-		<tr>
-			<td clospan="2" align="right">
-			<input type="reset" value="지우기">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="button" value="등록" onclick="checkQnaContent();"></td>
-		</tr>				
+			<td colspan="2" align="center"><textarea name="qnaContent" placeholder="문의 내용을 입력 해 주세요."></textarea></td>
+		</tr>			
 	</table>
 	</form>
 </body>

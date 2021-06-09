@@ -77,7 +77,7 @@
 	}
 	function openNewWindow(window) {
 		open(window, "confirm",
-		"roolbar=no,location=no,menubar=no,scrollbars=no,resizable=no,width=300,height=150");
+		"roolbar=no,location=no,menubar=no,scrollbars=no,resizable=no,width=450,height=230");
 	}	
 </script>
 <body>

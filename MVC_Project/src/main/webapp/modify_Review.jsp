@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/reviewCRUD.css" type="text/css">
+<link rel="stylesheet" href="css/review.css" type="text/css">
 <title>Modify Review</title>
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -79,18 +79,16 @@
 			 </td>
 		</tr>
  		<tr>
-   			<td colspan="2" align="center">
-			<div class="review">
+   			<td class="photo" colspan="2" align="center">
 			    <div id="preview">
 			    <c:if test="${!empty reviewOldFilePath }">
 			    <img class="reviewPhoto" src="reviewPhoto/${reviewOldFilePath }">
 			    </c:if>
 			    </div>
-			</div>
    			</td>
    		</tr>
 		<tr>
-			<td colspan="2" align="center">
+			<td colspan="2" align="center" class="content">
 			<textarea name="reviewContent">${reviewContent }</textarea></td>
 		</tr>			
 	</table>	
@@ -102,7 +100,7 @@ function readInputFile(input) {
     if(input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function (e) {
-            $('#preview').html("<img src="+ e.target.result +" width='300'>");
+            $('#preview').html("<img class='reviewPhoto' src="+ e.target.result +">");
         }
         reader.readAsDataURL(input.files[0]);
     }

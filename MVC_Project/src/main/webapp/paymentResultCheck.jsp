@@ -60,7 +60,7 @@
 <div class=mainBox>
 	<div class="contentBox">
 		<div class="textLeft">
-			<div class="title" style="font-weight:700;">결제완료 : ${DETAIL.title}</div>
+			<div class="title" style="font-weight:700;">${DETAIL.title}</div>
 			<div class="titleBottom"></div>
 			<div class="share"><img class="sharePhoto" src="${DETAIL.filePath }"/></div>
 			<div class="shareIntroduce" style="font-weight:700;">추가 정보</div>

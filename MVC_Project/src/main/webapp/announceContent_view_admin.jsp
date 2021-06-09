@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>공지 사항</title>
 </head>
+
 <%@ include file="header.jsp" %>
 
 <div class="mainBox">
@@ -16,18 +17,18 @@
 <body>
 	<h3>공지사항</h3>
 	<form action="announceModify_admin.four" method="post">
-		<table border="0" class="table">
+		<table class="table">
 			<tr>
 				<th>No. </th>
 				<td align="left"><input type="text" name="no" readonly="readonly" value="${announceContent_view.no }"></td>
 			</tr>
 			<tr>
 				<th>제목</th>
-				<td align="left"><input type="text" name="title" size="30" value="${announceContent_view.title}"></td>
+				<td align="left"><input type="text" name="title" size="100" value="${announceContent_view.title}"></td>
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td><textarea rows="10" cols="50" name="content">${announceContent_view.content}</textarea></td>
+				<td><textarea class="autosize"  name="content" style="height:500px;">${announceContent_view.content}</textarea></td>
 			</tr>
 		</table>
 	

@@ -11,6 +11,7 @@
 </head>
 	<script type="text/javascript">
 		let shareableDateNum = 1111111*1;
+		let startTime = 0*1;
 		
 		function dateHandler(checkBox){
 			console.log("변경전");
@@ -27,6 +28,18 @@
 			
 			dayLimit.value = shareableDateNum;
 		}
+		
+		function selectedStartTime(input){
+			console.log(input);
+			startTime = input*1;
+		}
+		function selectedEdnTime(input){
+			console.log(input);
+			if (input*1 <= startTime*1){
+				alert("종료시간이 시작시간과 같거나 빠릅니다.");
+				document.writeForm.endTime.value=0;
+			}
+		}
 	</script>
 <body>
 	<%@ include file="header.jsp" %>
@@ -34,22 +47,36 @@
 	<div class="contentBox">
 	<h3 style="text-align: center;">공간 나눔(호스트) 신청 : 영업정보 입력</h3>
 	<table class="table" style="margin-left: auto; margin-right: auto;">
-		<form action="write.four" method="post" enctype="multipart/form-data">
+		<form action="write.four" name="writeForm" method="post" enctype="multipart/form-data">
 			<tr>
 				<th>공간이름</th>
 				<td><input type="text" name="title" size="50"></td>
 			</tr> 
 			<tr>
-				<th>시간당 금액</th>
+				<th>시간당 금액(원)</th>
 				<td><input type="text" name="price" size="50"></td>
 			</tr> 
 			<tr>
 				<th>시작시간</th>
-				<td><input type="text" name="startTime" size="50" placeholder="영업시작 시간을 입력해주세요(예:오전 8시이면 08을 입력)"></td>
+				<td>
+					<select name="startTime" onchange="selectedStartTime(this.value)">
+						<option value="0">선택</option>
+						<c:forEach var="time" begin="8" end="22" step="1">
+							<option value="${time}">${time} : 00</option>
+						</c:forEach>
+					</select>
+				</td>
 			</tr> 
 			<tr>
 				<th>종료시간</th>
-				<td><input type="text" name="endTime" size="50" placeholder="영업종료 시간을 입력해주세요(예:오후 8시이면 20을 입력)"></td>
+				<td>
+					<select name="endTime" onchange="selectedEdnTime(this.value)">
+						<option value="0">선택</option>
+						<c:forEach var="time" begin="8" end="22" step="1">
+							<option value="${time}">${time} : 00</option>
+						</c:forEach>
+					</select>
+				</td>
 			</tr> 
 			<tr>
 				<th>예약가능요일</th>
@@ -65,7 +92,7 @@
 				</td>
 			</tr> 
 			<tr>
-				<th>내용</th>
+				<th style="vertical-align:middle">내용</th>
 				<td><textarea rows="10" cols="50" name="introduce"></textarea></td>
 			</tr> 
 			<tr>

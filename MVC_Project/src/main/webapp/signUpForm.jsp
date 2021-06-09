@@ -1,3 +1,4 @@
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -17,6 +18,11 @@
 </style>
 
 </head>
+<%
+	Date date = new Date();
+	int year = date.getYear() + 1900;
+	pageContext.setAttribute("year", year);
+%>
 <script type="text/javascript">
 	function validationCheck(){
 		var form = document.signUpForm;
@@ -26,9 +32,16 @@
 		//phoneNo check
  		var phonePattern = /^\d{3}-\d{3,4}-\d{4}$/;
 		var phone = form.phone1.value + "-" + form.phone2.value + "-" + form.phone3.value;
-		//birthday check
-		var birthdayPattern = /^(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])$/;
-		var birthday = form.year.value + "-" + form.month.value + "-" + form.day.value
+		
+		//생년월일 체크
+		var date = new Date();
+		var realMonth = date.getMonth()+1;
+		var realToDay = date.getDate();
+		
+		var inputedYear = form.year.value;
+		var inputedMonth = form.month.value;
+		var inputedDay = form.day.value;
+		
 
 		if(form.idDupleChecked.value == "false") {
 			alert("아이디 중복확인을 해 주세요.");
@@ -50,9 +63,22 @@
 			return false;
 		} 
 
-		if(!check(birthdayPattern, birthday, "유효하지 않은 생년월일입니다.")) {
+		if(inputedYear== 0 || inputedMonth == 0 || inputedDay == 0) {
+			alert("생년월일을 선택해 주세요.");
 			return false;
 		}
+		
+		if(inputedMonth > realMonth) {
+			alert("올바른 생년월일을 선택해 주세요.");
+			return false;
+		}
+		
+		if(inputedMonth >= realMonth && inputedDay >= realToDay){
+			alert("올바른 생년월일을 선택해 주세요.");
+			return false;
+			}
+		
+		
 		if (sessionStorage.getItem("pwEqualCheck") == "null"){
 			alert("비밀번호 일치확인을 해 주세요.");
 			return false;
@@ -201,10 +227,26 @@
 			<tr>
 				<th>생년월일</th>
 				<td colspan="2">
-				<input type="text" name="year" size="4" maxlength="4"><a class="aBirth">년</a> 
-				<input type="text" name="month" size="2" maxlength="2"><a class="aBirth">월 </a>
-				<input type="text" name="day" size="2" maxlength="2"><a class="aBirth">일</a>
-				
+					<select name="year">
+					    <option value="0">선택</option>
+					    <c:set var="year" value="${year}"/>
+					    <c:forEach var="i" begin="0" end="100">
+						    <c:set var="yearOption" value="${year - i}" />
+						    <option value="${yearOption}">${yearOption}</option>
+					    </c:forEach>
+					</select>년
+					<select name="month">
+						<option value="0">선택</option>
+						<c:forEach var="month" begin="1" end="12">
+						    <option value="${month}">${month}</option>
+						</c:forEach>
+					</select>월
+					<select name="day">
+						<option value="0">선택</option>
+						<c:forEach var="day" begin="1" end="31">
+						    <option value="${day}">${day}</option>
+						</c:forEach>
+					</select>일
 				</td>
 			</tr>		
 		</table>

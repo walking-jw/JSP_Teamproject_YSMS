@@ -14,18 +14,18 @@
 <div class="contentBox">
 <body>
 	<h3>공지사항</h3>
-	<table border="0" class="table">
+	<table class="table">
 			<tr>
 				<th>No. </th>
 				<td><input type="text" name="no" readonly="readonly" value="${announceContent_view.no }"></td>
 			</tr>
 			<tr>
 				<th>제목</th>
-				<td><input type="text" name="title" size="20" readonly="readonly" value="${announceContent_view.title}"></td>
+				<td><input type="text" name="title" size="100" readonly="readonly" value="${announceContent_view.title}"></td>
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td><textarea rows="10" cols="50" name="content" readonly="readonly">${announceContent_view.content}</textarea></td>
+				<td><textarea rows="50" cols="100" name="content" readonly="readonly" style="height:500px;">${announceContent_view.content}</textarea></td>
 			</tr>
 			
 	</table>

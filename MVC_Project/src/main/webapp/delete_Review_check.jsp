@@ -4,7 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Delete QnA</title>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/Compeleted.css" type="text/css">
+<title>Delete Review</title>
 </head>
 <%
 	request.setCharacterEncoding("utf-8");
@@ -13,15 +16,15 @@
 %>
 
 <body>
-<table>
+<table id="reviewDeleteChk" align="center">
 	<form action="review_delete.four" method="post">
 	<input type="hidden" name="rentalNo" value="${rentalNo }">
 	<tr>
-		<td colspan="2">정말 삭제하시겠습니까?</td>
+		<td colspan="2" align="center" valign="bottom">정말 삭제하시겠습니까?</td>
 	</tr>
 	<tr>
-		<td><input type="submit" value="YES"></td></form>
-		<td><input type="button" value="NO" onclick="history.back();"></td>
+		<td align="center" valign="top"><input type="submit" value="YES"></td></form>
+		<td align="center" valign="top"><input type="button" value="NO" onclick="history.back();"></td>
 	</tr>
 </table>
 </body>
